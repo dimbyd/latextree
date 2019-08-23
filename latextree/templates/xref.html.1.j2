@@ -1,0 +1,33 @@
+{%- if 'key' in node.args -%}
+	{% set key = node.args['key'].children[0].chars() %}
+	{%- if key in tree.labels -%}
+		{%- if node.species == "eqref" -%}({% endif %}
+		{%- set target = tree.labels[key] -%}
+			{% if target.number_str %}
+			<p>
+			{% for child in target.numeric_label.children %}
+				{# {{ child.chars() }} #}
+				{% if child.children %}
+					{% for kid in child.children %}
+						{{ kid.content }}
+					{% endfor %}
+				{% else %}
+				{{ child.content }}
+				{% endif %}
+			{% endfor %}
+			</p>
+			{% endif %}
+			<a href="{{ anchors[target] | safe }}">{{ target.number }}</a>
+		{%- if node.species == "eqref" -%}){% endif %}
+	{% endif %}
+{% endif %}
+{%- if 'key_list' in node.args -%}
+	{% set key_list = node.args['key_list'].children[0].chars() %}
+	{% set keys = key_list.split(',') %}
+	[{%- for key in keys -%}
+	{%- if key in tree.labelled_nodes -%}
+		{%- set target = tree.labelled_nodes[key] -%}
+		<a href="{{ urls[key] | safe }}">{{ target.number }}</a>{{", " if not loop.last }}
+	{%- endif -%}
+	{%- endfor -%}]
+{%- endif -%}

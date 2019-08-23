@@ -1,0 +1,58 @@
+/* tabular.css */
+
+table.tabular {
+	border-collapse:collapse;
+	display:inline;
+}
+table.tabular th, td {
+    padding:7px;
+}
+table.tabular tr.T {
+    border-top:1px solid black;
+}
+table.tabular tr.B {
+    border-bottom:1px solid black;
+}
+table.tabular tr.TB {
+    border-top:1px solid black;
+    border-bottom:1px solid black;
+}
+table.tabular tr.TT {
+    border-top:1px double black;
+}
+table.tabular tr.BB {
+    border-bottom: 1px double black;
+}
+table.tabular td.c, td.Lc, td.LLc, td.cR, td.LcR, td.LLcR, td.LcRR, td.LLcRR {
+	text-align:	center;
+}
+table.tabular td.l, td.Ll, td.LLl, td.lR, td.LlR, td.LLlR, td.LlRR, td.LLlRR {
+	text-align:	left;
+}
+table.tabular td.r, td.Lr, td.LLr, td.rR, td.LrR, td.LLrR, td.LrRR, td.LLrRR {
+	text-align:	right;
+}
+table.tabular td.Lc, td.Ll, td.Lr {
+	border-left:1px solid black;
+}
+table.tabular td.LLc, td.LLl, td.LLr {
+	border-left:1px double black;
+}
+table.tabular td.cR, td.lR, td.rR {
+	border-right:1px solid black;
+}
+table.tabular td.cRR, td.lRR, td.rRR {
+	border-right:1px double black;	
+}
+table.tabular td.LcR, td.LlR, td.LrR {
+	border-left:1px solid black;
+	border-right:1px solid black;
+}
+table.tabular td.LLcR, td.LLlR, td.LLrR {
+	border-left:1px double black;
+	border-right:1px solid black;
+}
+table.tabular td.LLcRR, td.LLlRR, td.LLrRR {
+	border-left:1px double black;
+	border-right:1px double black;
+}

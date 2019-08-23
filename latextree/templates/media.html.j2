@@ -1,0 +1,11 @@
+{# images and video #}
+{%- if node.species == "Image" -%}
+    <img style="width:{% if node.width %}{{ node.width }}{% else %}40{% endif %}%;" 
+        src="{{ image_file_names[node] }}"
+        {% if node.parent.label %} 
+            id="{{ node.parent.label }}"{% endif %}/>
+
+{%- elif node.get_species() == "Video" -%}
+	<iframe width="{% if node.width %}{{ node.width }}{% else %}40{% endif %}%" 
+        src="{{ node.content }}" allowfullscreen></iframe>
+

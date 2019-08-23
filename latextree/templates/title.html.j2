@@ -1,0 +1,9 @@
+{%- if title.species == 'Group' -%}
+	{%- with group = title -%}
+		{%- include "group.html.j2" -%}
+	{%- endwith -%}
+{%- else -%}
+	{%- with node = title -%}
+		{%- include "node.html.j2" -%}
+	{%- endwith -%}
+{%- endif -%}

@@ -1,0 +1,16 @@
+
+<tr class="{{ item.species }}"{% if item.label %}, id="{{ item.label }}"{% endif %}>
+<td>{%- if item.marker -%}
+    {%- with arg = item.marker -%}
+        {%- include "argument.html.j2" -%}
+    {%- endwith -%}
+{%- else -%}
+    &#8226;
+{%- endif -%}
+</td>
+<td>
+{%- for node in item.children recursive -%}
+    {% include "node.html.j2" %}
+{%- endfor -%} 
+</td>
+</tr>

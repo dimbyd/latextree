@@ -1,0 +1,37 @@
+{%- if 'key' in node.args -%}
+	{%- set key = node.args['key'].children[0].chars() -%} 
+	{%- if key in tree.labels -%}
+		{%- if node.species == "eqref" -%}({%- endif -%} 
+		{%- set target = tree.labels[key] -%}
+		{%- if target in xrefs -%} 
+			<a href="{{ xrefs[target].url | safe }}">		
+			{%- if target.marker -%} 
+				{%- with arg = target.marker -%} 
+					{%- include "argument.html.j2" -%} 
+				{%- endwith -%} 
+			{%- else -%} 
+				{{ target.number }}
+			{%- endif -%} 
+			</a>
+		{%- endif -%} 
+		{%- if node.species == "eqref" -%}){%- endif -%} 
+	{%- endif -%} 
+{%- endif -%} 
+{%- if 'key_list' in node.args -%}
+	{%- set key_list = node.args['key_list'].children[0].chars() -%} 
+	{%- set keys = key_list.split(',') -%}
+	[{%- for key in keys -%}
+		{%- if key in tree.labels -%}
+			{%- set target = tree.labels[key] -%}
+			{%- if target in xrefs -%}
+				<a href="{{ xrefs[target].url | safe }}">
+				{%- if target.marker -%}
+					{%- with arg = target.marker -%}
+						{%- include "argument.html.j2" -%}
+					{%- endwith -%}
+				{%- endif -%}
+				</a>{{", " if not loop.last }}
+			{%- endif -%}
+		{%- endif -%}
+	{%- endfor -%}]
+{%- endif -%}

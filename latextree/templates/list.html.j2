@@ -1,0 +1,18 @@
+{% if list.species == "thebibliography" %}       
+    <div class="section_title">
+        {% if 'bibname' in tree.registry.names %}
+            {% with name = tree.registry.names['bibname'] %}
+                {% include "name.html.j2" %}
+            {% endwith %}
+        {% else %}
+            References
+        {% endif %}
+    </div>
+{% endif %}
+<table class="{{ list.species }}">
+{%- for item in list.children recursive -%}
+    {%- if item.genus == 'Item' -%} {# skip spurious text nodes #}
+        {%- include "item.html.j2" -%}
+    {%- endif -%}
+{%- endfor -%}
+</table>

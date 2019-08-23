@@ -1,0 +1,23 @@
+<div class="maketitle">
+    {% if preamble.title %}
+		<div class="doctitle">
+		{% with arg = preamble.title %}
+			{%- include "argument.html.j2" -%}
+		{% endwith %}
+		</div>
+	{% endif %}
+	{% if preamble.author %}
+		<div class="docauthor">
+		{% with arg = preamble.author %}
+			{%- include "argument.html.j2" -%}
+		{% endwith %}
+		</div>
+	{% endif %}
+	{% if preamble.date %}
+		<div class="docdate">
+		{% with arg = preamble.date %}
+			{%- include "argument.html.j2" -%}
+		{% endwith %}
+		</div>
+	{% endif %}
+</div>

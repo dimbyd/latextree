@@ -1,0 +1,11 @@
+\documentclass{article}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\def\fname{anotherfile.tex} % shocker!!
+\begin{document}
+Hello from the main file.
+\input{anotherfile}
+\input\fname\
+Here is an image:
+\includegraphics[scale=0.25]{AcapB}
+\end{document}

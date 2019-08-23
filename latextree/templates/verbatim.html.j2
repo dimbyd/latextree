@@ -1,0 +1,12 @@
+{% if node.family == "Environment" %}
+    <div class="tex2jax_ignore">
+        <pre class="{{ node.species }}">
+            {%- for child in node.children -%}
+                {{ child.chars() | trim }}
+            {%- endfor -%}
+        </pre>
+    </div>
+{% endif %}
+{% if node.family == "Command" %}
+    <span class="{{ node.species }}">{{ node.chars() | trim }}</span>
+{% endif %}

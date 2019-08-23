@@ -1,0 +1,32 @@
+span.theorem_caption {
+	font-weight: bold;
+}
+span.theorem_statement {
+	font-style: italic;
+}
+span.theorem_title {
+	font-style: italic;
+} 
+span.theorem_title::before {
+    content: "(";
+}
+span.theorem_title::after {
+    content: ")";
+}
+
+.definition, .lemma, .theorem, .corollary, .remark, .example, .exercise {
+    /* border:1px solid black; */
+	background:GhostWhite;
+    margin: 5px 0;
+    padding: 5px 1px;
+}
+
+.proof, .solution, .answer, .hint {
+    font-style: normal;
+	background:WhiteSmoke;
+    margin: 5px 0;
+    padding: 5px 1px;
+}
+
+
+

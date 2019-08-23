@@ -1,0 +1,81 @@
+% quiz.tex
+\documentclass[12pt,a4paper]{exam}
+
+% uncomment for answers
+\printanswers
+
+% class options
+\bracketedpoints
+\pointsinrightmargin
+\addpoints
+
+% class tweaks
+\renewcommand{\questionshook}{\addtolength{\itemsep}{3ex}}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\subpartlabel}{(\thesubpart)}
+\CorrectChoiceEmphasis{\bfseries}
+\newcommand{\bigsquare}{\raisebox{0.5ex}{\fbox{\phantom{\rule{0.5ex}{0.5ex}}}}}
+\checkboxchar{$\bigsquare$}
+\checkedchar{$\text{\rlap{\,\!$\checkmark$}}\bigsquare$}
+
+
+% layout
+\usepackage[margin=30mm]{geometry}
+\setlength{\parindent}{0pt}
+\pagestyle{plain}
+
+% document info
+\title{Odd and Even Functions}
+\author{M Mouse}
+\date{March 2019}
+%\date{\today}
+
+%--------------------
+\begin{document}
+\maketitle
+
+\begin{center}\large\sc Please answer the following questions.\end{center}
+
+\bigskip
+\begin{questions}
+
+\question[5] 
+The product of an odd and even function is 
+\begin{choices}
+\correctchoice Odd
+\choice Even
+\choice Neither
+\end{choices}
+
+\question[5]
+The square of any function is an even function.
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\question[5] 
+What is the value of the following integral?
+\[
+\int_{-\pi}^{\pi} x^3\cos(x)\,dx
+\]
+\begin{choices}
+\choice $-\pi^4/8$
+\choice $\pi^4/8$
+\choice $\pi^4/4$
+\choice $-\pi^4/4$
+\correctchoice None of the above
+\end{choices}
+
+\question[5] 
+Let $f(x) = x^3\cos(x)$. The value of the corresponding integral on the interval $[-\pi, \pi]$ is given by 
+\begin{choices}
+\choice $-\pi^4/8$
+\choice $\pi^4/8$
+\choice $\pi^4/4$
+\choice $-\pi^4/4$
+\correctchoice None of the above
+\end{choices}
+
+\end{questions}
+\end{document}

@@ -1,0 +1,25 @@
+{%- set cont = containers[caption] -%}
+{%- if cont -%}
+	<div class="caption">
+		{%- if not caption.starred -%}
+			{%- set key = cont.species + 'name' -%}
+			{%- if key in tree.registry.names -%}
+				{%- with name = tree.registry.names[key] -%}
+					{%- include "name.html.j2" -%}
+				{%- endwith -%}
+			{%- else -%}
+				{{ cont.species }}
+			{%- endif -%}
+			{%- if cont.marker -%}
+				{%- with arg = cont.marker -%}
+					{%- include "argument.html.j2" -%}&emsp;
+				{%- endwith -%}
+			{%- endif -%}
+		{%- endif -%}
+		<span class="caption_text">
+		{%- with title = caption.args['caption_text'] -%}
+			{%- include "title.html.j2" -%}
+		{%- endwith -%}
+		</span>
+	</div>
+{%- endif -%}

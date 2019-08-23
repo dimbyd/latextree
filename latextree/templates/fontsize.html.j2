@@ -1,0 +1,15 @@
+{%- if node.family == "Command" -%}
+    <span class="{{node.species}}">
+        {%- with arg = node.args['text'] -%}
+            {%- include "argument.html.j2" -%}
+        {%- endwith -%}
+    </span>
+{%- elif node.family == "Declaration" -%}
+    <span class="{{node.species}}">
+    {%- for child in node.children recursive -%}
+        {%- with node = child -%}
+            {%- include "node.html.j2" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+    </span>
+{%- endif -%}

@@ -1,0 +1,38 @@
+{
+    "commands": {
+        "item": [
+            "question[points]",
+            "part[points]",
+            "subpart[points]",
+            "choice[points]",
+            "correctchoice[points]"
+        ],
+        "answer": [
+            "ans"
+        ]
+    },
+    "environments": {
+        "list": [
+            "questions[options]",
+            "parts[options]",
+            "subparts[options]",
+            "choices[options]",
+            "checkboxes[options]",
+            "answer[options]"
+        ]
+    },
+    "block_commands": {
+        "question":             ["questions"],
+        "part":                 ["parts"],
+        "subpart":              ["subparts"],
+        "choice":               ["correctchoice", "choices", "checkboxes"],
+        "correctchoice":        ["choice", "choices", "checkboxes"]
+    },
+    "numbered": {
+        "question":         "questions",
+        "part":             "question",
+        "subpart":          "part",
+        "choice":           "choices",
+        "correctchoice":    "choices"
+    }
+}

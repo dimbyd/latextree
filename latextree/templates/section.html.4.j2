@@ -1,0 +1,19 @@
+{% if node.starred %}
+    <div class="{{ node.species }}"{% if node.label %}, id="{{ node.label }}"{% endif %}>
+    {% with heading = node.args['title'] %}
+        <div class="{{ node.species }}_title">
+        {%- include "heading.html.j2" -%}
+        </div>
+    {% endwith %}
+    </div>
+    {{ loop(node.children) }}
+{% else %}
+    <div class="{{ node.species }}"{% if node.label %}, id="{{ node.label }}"{% endif %}>
+    {% with title = node.args['title'] %}
+        <div class="{{ node.species }}_title">
+        {%- include "title.html.j2" -%}
+        </div>
+    {% endwith %}
+    {{ loop(node.children) }}
+    </div>
+{% endif %}

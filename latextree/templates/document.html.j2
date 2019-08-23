@@ -1,0 +1,126 @@
+{% extends "index.html" %}
+
+{% block styles %}
+    {{ super() }}
+{% endblock %}
+
+{% block title %}
+	{% if tree.preamble.title %} 
+		<title>
+		{% with group = tree.preamble.title %}
+			{% include "group.html" %}
+		{% endwith %}
+		</title>
+	{% endif %}
+{% endblock %}
+
+{% block macros %}
+	<div class="macros">
+	{% if tree.preamble.newcommands %}
+		{% for cmd in tree.preamble.newcommands %}
+			\({{ cmd | safe }}\)
+		{% endfor %}
+	{% endif %}
+	</div>
+{% endblock %}
+
+{% block institution %}
+	{{ tree.preamble.institution }}
+{% endblock %}
+
+{% block breadcrumbs %}
+	{% if tree.preamble.modulecode %} {{ tree.preamble.modulecode }}&nbsp;&gt; {% endif %}
+    <a href="index.html">
+		{% with group = tree.preamble.title %}
+			{% include "group.html" %}
+		{% endwith %}
+	{% endif %}
+{% endblock %}
+
+{% block content_main %}
+	<h1 class="booktitle">
+	<table>
+		{% if tree.preamble.title %}
+		<tr><th align="left">Title</th><td>
+			{% with group = tree.preamble.title %}
+				{% include "group.html" %}
+			{% endwith %}
+		</td></tr>
+		{% endif %}
+		{% if tree.preamble.author %}
+			<tr><th align="left">Author</th><td>
+			{% with group = tree.preamble.author %}
+				{% include "group.html" %}
+			{% endwith %}
+			</td></tr>
+		{% endif %}
+		{% if tree.preamble.date %}
+		<tr><th align="left">Date</th><td>
+			{% with group = tree.preamble.date %}
+				{% include "group.html" %}
+			{% endwith %}
+		</td></tr>
+		{% endif %}
+	</table>
+	</h1>
+
+	{# preface #}
+	{% for child in tree.root.children recursive %}
+		{% if child.get_species() not in ["chapter", "section", "bibliography"] %}
+			{% with node = child %}{% include "node.html" %}{% endwith %}
+		{% endif %}
+	{% endfor %}
+
+
+	{% if chapters %}
+		<h2>Chapters</h2>
+		{% include "toc.html" %}
+	{% endif %}
+
+	{% if not chapters and sections %}
+		<h2>Sections</h2>
+		{% include "chapter_toc.html" %}
+	{% endif %}
+
+	{% if not chapters and not sections %}
+		{% if bibliography %}
+			<h3>References</h2>
+			{% include "bibliography.html" %}
+		{% endif %}
+	{% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+	{% if chapters or sections %}
+	<h2 style="text-align:center;">
+		<a href="index.html">
+			{% with group = tree.preamble.title %}
+				{% include "group.html" %}
+			{% endwith %}
+		</a>
+	</h2>
+		{% if sections %}
+			<h3>Sections</h3>
+			{% include "chapter_toc.html" %}
+		{% endif %}
+
+		{% if chapters %}
+			<h3>Chapters</h3>
+			{% include "toc.html" %}
+		{% endif %}
+
+	{% endif %}
+{% endblock %}
+
+
+{% block browse_horizontal %}
+	{% include "browse_horizontal.html" %}
+{% endblock %}
+
+
+
+
+
+
+

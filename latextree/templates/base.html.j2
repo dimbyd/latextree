@@ -1,0 +1,36 @@
+<html>
+<head>
+
+{% block styles %}
+	{% include "styles.html.j2" %}
+{% endblock %}
+{%- block scripts -%}	
+	{% include "scripts.html.j2" %}
+{% endblock %}
+
+{%- block title -%} 
+	<title>BASE.HTML</title>
+{% endblock %}   
+</head>
+	
+<body>
+{% block newcommands %}
+{%- endblock -%}
+
+<div id="toc">
+{% block toc %}
+{% endblock %}
+</div>
+
+<div id="content-main">
+{% block content_main %}
+{% endblock %}
+</div>
+
+<div id="footer">
+{%- block footer -%}
+	<code>Typeset by LatexTree on {{ today }}</code>
+{%- endblock -%}
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% if node.species == "tabular" %}
+    
+    <table class="{{ node.species }}">				
+            {{ loop(node.children) }}
+	</table>
+
+{% elif node.species == "Row" %}
+    <tr {% if node.format %}class="{{ node.format }}"{% endif %}>				
+        {{ loop(node.children) }}
+	</tr>
+
+{% elif node.species == "Cell" %}
+    <td {% if node.format %}class="{{ node.format }}"{% endif %}>				
+        {{ loop(node.children) }}
+	</td>
+    
+{%- elif node.species == "hline" -%} 
+    {# do nothing for now #}
+    
+{% endif %}

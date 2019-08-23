@@ -1,0 +1,195 @@
+% filename: cambi.sty
+\NeedsTeXFormat{LaTeX2e}
+\def\fileversion{0.1}
+\def\filedate{2017/08/28}
+\ProvidesPackage{cambi}[\filedate \space v\fileversion \space (scmde)]
+\ProvidesFile{cambi.sty}[\filedate \space v\fileversion \space (scmde)]
+
+% package options
+\newif\if@en\@enfalse\DeclareOption{en}{\@entrue}
+\newif\if@cy\@cyfalse\DeclareOption{cy}{\@cytrue}
+\ProcessOptions
+\relax
+
+
+%----------------------------------------
+% babel
+% make english the default :-(
+\newif\if@mainlangenglish\@mainlangenglishtrue
+\if@cy
+	\@mainlangenglishfalse
+	\RequirePackage[english,main=welsh]{babel} 
+\else
+	\RequirePackage[main=english,welsh]{babel} 
+\fi
+\providecommand{\theoremname}{}
+\providecommand{\lemmaname}{} 
+\providecommand{\propositionname}{} 
+\providecommand{\corollaryname}{} 
+\providecommand{\definitionname}{} 
+\providecommand{\examplename}{} 
+\providecommand{\remarkname}{} 
+\providecommand{\summaryname}{} 
+\providecommand{\problemname}{} 
+\providecommand{\exercisename}{} 
+\providecommand{\conditionname}{} 
+\providecommand{\questionname}{}
+\providecommand{\answername}{}
+\providecommand{\solutionname}{}
+\providecommand{\homeworkname}{}
+\providecommand{\quizname}{}
+
+\addto\captionsenglish{%
+    \renewcommand{\theoremname}{Theorem}
+    \renewcommand{\lemmaname}{Lemma}
+    \renewcommand{\propositionname}{Proposition}
+    \renewcommand{\corollaryname}{Corollary}
+    \renewcommand{\definitionname}{Definition}
+    \renewcommand{\examplename}{Example}
+    \renewcommand{\remarkname}{Remark}
+    \renewcommand{\summaryname}{Summary}
+    \renewcommand{\problemname}{Problem}
+    \renewcommand{\exercisename}{Exercise}
+    \renewcommand{\conditionname}{Condition}
+    \renewcommand{\questionname}{Question}
+    \renewcommand{\answername}{Answer}
+    \renewcommand{\solutionname}{Solution}
+    \renewcommand{\proofname}{Proof}
+    \renewcommand{\homeworkname}{Homework}
+    \renewcommand{\quizname}{Quiz}
+}
+\addto\captionswelsh{%
+	\renewcommand{\theoremname}{Theorem}
+	\renewcommand{\lemmaname}{Lemma}
+	\renewcommand{\propositionname}{Gosodiad}
+	\renewcommand{\corollaryname}{Canlyneb}
+	\renewcommand{\definitionname}{Diffiniad}
+	\renewcommand{\examplename}{Enghraifft}
+	\renewcommand{\remarkname}{Sylwad}
+	\renewcommand{\summaryname}{Crynodeb}
+	\renewcommand{\problemname}{Problem}
+	\renewcommand{\exercisename}{Ymarfer}
+	\renewcommand{\conditionname}{Amod}
+    \renewcommand{\questionname}{Cwestiwn}
+	\renewcommand{\answername}{Ateb}
+	\renewcommand{\solutionname}{Datrysiad}
+	\renewcommand{\proofname}{Prawf}
+	\renewcommand{\homeworkname}{Gwaith Cartref}
+	\renewcommand{\quizname}{Cwis}
+}
+
+%----------------------------------------
+% TeX magic for language marks
+% reads character-by-character into the \nod variable (cymraeg: nod =  english: character)
+\RequirePackage{xstring}
+\def\gobblechar{\let\nod= }
+\def\docy{\afterassignment\checkcy\gobblechar}
+\def\checkcy{%
+	\expandafter\IfBeginWith\expandafter*\expandafter{\meaning\nod}{command}{\let\nod=\relax}%
+	\null % helps to get rid of spaces! Removing it makes it crash!
+	\ifcat\nod\space%
+		\if@cy\nod\fi%
+		\let\next=\docy%
+	\else%
+		\ifcat\nod x%
+			\if@cy\nod\fi%
+			\let\next=\docy%
+		\else%
+			\ifcat\nod 1%
+				\if@cy\nod\fi%
+          		\let\next=\docy%
+			\else%
+				\nod
+		     	\let\next=\relax%
+			\fi%
+		\fi%
+	\fi%
+	\next%
+}%
+\def\doen{\afterassignment\checken\gobblechar}
+\def\checken{%
+	\expandafter\IfBeginWith\expandafter*\expandafter{\meaning\nod}{command}{\let\nod=\relax}%
+	\null
+	\ifcat\nod\space%
+		\if@cy\else\nod\fi%
+		\let\next=\doen%
+	\else%
+		\ifcat\nod x%
+			\if@cy\else\nod\fi%
+			\let\next=\doen%
+		\else%
+			\ifcat\nod 1%
+				\if@cy\else\nod\fi%
+          		\let\next=\doen%
+			\else%
+				\nod
+		     	\let\next=\relax%
+			\fi%
+		\fi%
+	\fi%
+	\next%
+}%
+
+% marks: switches language mode (cy, en or bi)
+\newcommand{\cy}{}
+\newcommand{\en}{}
+\newcommand{\bi}{}
+\if@cy
+	\renewcommand{\cy}{}
+	\renewcommand{\en}{\doen}
+\else
+	\renewcommand{\cy}{\docy}
+	\renewcommand{\en}{}
+\fi
+
+% switches
+\newcommand{\welshon}{%
+	\@cytrue%
+	\renewcommand{\cy}{}%
+	\renewcommand{\en}{\doen}%
+}
+\newcommand{\welshoff}{%
+	\@cyfalse%
+	\renewcommand{\cy}{\docy}%
+	\renewcommand{\en}{}%
+}
+\newcommand{\resetlanguage}{\if@mainlangenglish\welshoff\else\welshon\fi}
+
+% environments
+\RequirePackage{comment}
+\specialcomment{welsh}{}{}
+\specialcomment{cymraeg}{}{}
+\specialcomment{english}{}{}
+\if@cy
+	\excludecomment{english}
+\else
+	\excludecomment{welsh}
+	\excludecomment{cymraeg}
+\fi
+
+% commands
+\newcommand{\wel}[1]{}
+\newcommand{\cym}[1]{\wel{#1}}
+\newcommand{\eng}[1]{}
+\newcommand{\bil}[2]{\eng{#1}\wel{#2}}
+\if@cy
+    \renewcommand{\wel}[1]{{\protect #1}}
+\else
+    \renewcommand{\eng}[1]{{\protect #1}}
+\fi
+
+
+% Hack to prevent 
+%	1. blank lines being produced when a mark is used at the beginning of a line (not totally fixed)
+%	2. problems using marks in section titles
+% Needs sorting out !!
+\let\oldcy=\cy
+\let\olden=\en
+\DeclareRobustCommand{\cy}{\strut\oldcy}
+\DeclareRobustCommand{\en}{\strut\olden}
+
+\endinput
+
+
+
+

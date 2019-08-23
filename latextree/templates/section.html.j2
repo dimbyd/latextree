@@ -1,0 +1,17 @@
+{% if not node.starred %}
+<div class="{{ node.species }}"{% if node in xrefs %}, id="{{ xrefs[node].label }}"{% endif %}>
+{% endif %}
+<div class="{{ node.species }}_title">
+{% if not node.starred %}
+    {%- with arg = node.marker -%}
+        {%- include "argument.html.j2" -%}&ensp;
+    {%- endwith -%}
+{% endif %}
+{%- with title = node.args['title'] -%}
+    {%- include "title.html.j2" -%}
+{% endwith %}
+</div>
+{{ loop(node.children) }}
+{% if not node.starred %}
+</div>
+{% endif %}

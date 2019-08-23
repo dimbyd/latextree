@@ -1,0 +1,35 @@
+<div class="toc">
+	<div class="toc_title">Contents</div>
+{%- if tree.chapters -%}
+	{%- for chap in tree.chapters -%}
+		{%- if not chap.starred -%}
+			<p class="toc">
+			{%- if chap != chapter -%}
+				<a href="{{ urls[chap] }}"> {# hyperlink to other chapters #}
+			{%- endif -%}
+			{{ chap.number }}.&nbsp;
+			{%- with title = chap.args['title'] -%}   
+				{%- include "title.html.j2" -%}	
+			{%- endwith -%}
+			{%- if chap != chapter -%}
+				</a>
+			{%- endif -%}
+			</p>
+		{%- endif -%}
+	{%- endfor -%}
+{%- elif tree.sections -%}
+	{%- for sec in tree.sections -%}
+	{% if not sec.starred %}
+		<p><a href="{{ xrefs[sec].url }}">
+		{%- with arg = sec.marker -%}
+			{%- include "argument.html.j2" -%}&ensp;
+		{%- endwith -%}
+		{%- with title = sec.args['title'] -%}
+			{%- include "title.html.j2" -%}
+		{%- endwith -%}
+		</a></p>
+	{%- endif -%}
+	{%- endfor -%}
+{% endif %}
+</div>
+

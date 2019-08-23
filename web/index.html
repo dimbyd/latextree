@@ -1,0 +1,1393 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./static/css/latex2web.css"/>
+	
+
+		<script type="text/javascript" 
+				src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+		</script>
+
+		<script type="text/javascript" src="./static/js/showhide.js"></script>
+
+		<!-- load mathjax config **before** MathJax.js -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+					extensions: ["tex2jax.js"],
+					jax: ["input/TeX", "output/HTML-CSS"],
+					tex2jax: {
+								inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+								displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+								processEscapes: true
+					},
+					TeX: {
+					equationNumbers: { 
+						autoNumber: "AMS",
+						formatNumber: function (n) { return n }
+					},
+					Commands: {
+						RR: "{\\bf R}",
+						pounds: '{\\unicode{xA3}}',
+					}
+				},
+				"HTML-CSS": {
+				availableFonts: ["TeX"],
+				linebreaks: { 
+					automatic: true, 
+					width: "container"
+				}
+			}
+			});
+		</script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+			<title>
+ 
+Test document</title>
+   
+     </head>
+	
+	<body>
+	
+		<div id="content-main">
+<hr>
+<div class="document-title", style="text-align:center">
+	
+		<h1 style="font-weight:normal;">
+Test document		</h1>
+		
+		<h2 style="font-weight:normal;">
+D Evans		</h2>
+	
+	<h3 style="font-weight:normal;">
+Feb 2019	</h3>
+
+</div>
+<hr>    ?Command:tableofcontents?
+    <!--div class="Node:Command:tableofcontents"></div-->    <div class="abstract">
+
+                <h4 class="abstract">Abstract</h4>
+    ?Command:noindent?
+    <!--div class="Node:Command:noindent"></div-->    <p>Mauris augue nunc congue mattis pretium, egestas condimentum leo torquent mattis arcu nascetur, dictum fames eu dictumst sed, ligula hac ante. Nibh libero dictum tellus, vitae vulputate aliquam massa felis nisl pretium, curabitur nullam sollicitudin sodales quisque potenti.</p>
+
+    </div>
+
+    <br/>
+
+    <div class="section">
+                    <h2>1&ensp;Introduction</h2>
+        
+
+This is a test file for <span class="texttt">latextree.latex2html</span>.    <br/>
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>2&ensp;Sections and headings</h2>
+        
+
+    <p>Bibendum nonummy mus ad suspendisse est quam, mattis ipsum porta imperdiet ultrices libero id, turpis per volutpat luctus, placerat congue. Ipsum facilisis urna libero felis nisl eleifend, tellus nullam cubilia vivamus varius egestas, dictum penatibus nec. Elementum nisl enim faucibus, dictumst interdum dis eleifend nullam, nibh rhoncus vitae tortor eget, congue pellentesque montes dictum senectus. Aliquet litora suscipit facilisis fames libero.</p>
+    <div class="subsection">
+                    <h3>2.1 &ensp;A fancy title: $\alpha+\beta$</h3>
+        
+    <p>Lacinia sociosqu proin risus dolor enim tincidunt, lobortis mi justo metus vel, eleifend tortor mattis consequat facilisi, aliquam sem. Ad consectetuer magnis fermentum nullam ut, erat habitant consequat ipsum, class.</p>
+
+    </div>
+
+
+
+    </div>
+
+
+        <h2 class="section">
+
+A section-level heading        </h2>
+    
+    <p>Urna nascetur sociosqu porta auctor neque vitae, aenean cum hendrerit nonummy tempor aliquet, facilisis tellus nascetur dolor vestibulum, quisque cum mi litora. Dis phasellus conubia convallis tellus, vel arcu sagittis ultrices cras risus, sit inceptos et aenean tempor, urna id turpis. Dignissim nunc pede dictumst dictum aenean hendrerit.</p>
+        <h3 class="subsection">
+
+A subsection-level heading        </h3>
+    
+    <p>Ligula erat iaculis sociis et, duis ultrices ridiculus hymenaeos purus, pulvinar rhoncus dis a aliquam, pede facilisis nisi. Pellentesque porttitor potenti nulla, penatibus cubilia diam id iaculis cum nibh, non sociis dignissim dui platea, molestie maecenas eros natoque ornare. Pellentesque interdum nunc malesuada nam et tellus, nisl nisi purus metus, litora aliquam euismod magnis dictumst nonummy, augue nibh. Urna praesent inceptos taciti sem placerat, sodales varius sodales nascetur, facilisis integer placerat sociosqu in vehicula.</p>    <br/>
+
+
+
+
+
+
+
+    <div class="section">
+                    <h2>3&ensp;Lists</h2>
+        
+An unordered list:
+
+<ul class="itemize">     <li class="item">
+Apples
+ 
+    </li>
+
+
+     <li class="item">
+Oranges
+ 
+    </li>
+
+
+     <li class="item">
+Lemons
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+An ordered list:
+
+<ol class="enumerate">     <li class="item">
+Cars
+ 
+    </li>
+
+
+     <li class="item">
+Buses
+ 
+    </li>
+
+
+     <li class="item">
+Bikes
+ 
+    </li>
+
+
+    </ol>
+
+    <br/>
+
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>4&ensp;Theorems</h2>
+            <br/>
+
+    <div class="defn">
+
+&nbsp;
+<span class="theorem_statement">
+
+This is a definition
+</span>
+    </div>
+
+    <br/>
+
+    <div class="lem">
+
+&nbsp;
+<span class="theorem_statement">
+
+This is a lemma
+</span>
+    </div>
+
+    <br/>
+
+    <div class="theo">
+
+&nbsp;
+<span class="theorem_statement">
+
+This is a theorem.
+<div class="proof"><i>Proof.</i>&emsp;
+This is a proof
+    </div>
+
+
+</span>
+    </div>
+
+    <br/>
+
+    <div class="rmk">
+
+&nbsp;
+<span class="theorem_statement">
+
+This is a remark.
+</span>
+    </div>
+
+    <br/>
+
+    <div class="exc">
+
+&nbsp;
+<span class="theorem_statement">
+
+This is an exercise.
+</span>
+    </div>
+
+    <br/>
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>5&ensp;Boxes</h2>
+            <br/>
+
+Here is a <span class="Group"><span class="tt">center</span>
+
+</span> environment:
+    <div class="center">
+
+
+Some text
+
+    </div>
+
+    <br/>
+
+A <span class="Group"><span class="tt">minipage</span>
+
+</span> environment (these are inline environments):    <br/>
+
+    <div class="minipage">
+
+
+Some text
+
+    </div>
+
+    <br/>
+
+A <span class="Group"><span class="tt">minipage</span>
+
+</span> environment with a <span class="Group"><span class="tt">centering</span>
+
+</span> declaration:    <br/>
+
+    <div class="minipage">
+
+
+Some text
+
+
+    </div>
+
+    <br/>
+
+A <span class="Group"><span class="tt">minipage</span>
+
+</span> environment with a <span class="Group"><span class="tt">raggedleft</span>
+
+</span> declaration:    <br/>
+
+    <div class="minipage">
+
+
+Some text
+
+
+    </div>
+
+    <br/>
+
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>6&ensp;Mathematics</h2>
+            <br/>
+
+An inline equation: $\sum_{n=1}^{\infty} a_n = 1$.    <br/>
+
+
+An <span class="texttt">equation</span> environment:
+    <div class="equation">
+
+            \begin{equation}
+\sum_{n=1}^{\infty} a_n = 1.
+\end{equation} 
+    </div>
+
+    <br/>
+
+An <span class="texttt">equation*</span> environment:
+    <div class="equation">
+
+            \begin{equation*}
+\sum_{n=1}^{\infty}\frac{1}{n^2} = \frac{\pi^2}{6}.
+\end{equation*} 
+    </div>
+
+    <br/>
+
+A <span class="texttt">display</span> environment with LaTeX delimiters:
+    <div class="Display">
+
+            \[
+x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}.
+\]
+
+ 
+    </div>
+
+A <span class="texttt">display</span> environment with TeX delimiters (double-dollars):
+    <div class="Display">
+
+            $$
+x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}.
+$$ 
+    </div>
+
+    <br/>
+
+A <span class="texttt">display</span> environment containing a <span class="texttt">text</span> command, which itself contains (inline) mathmode:
+    <div class="Display">
+
+            \[
+E=mc^2 \text{ where $c$ is the speed of light}.
+\]
+
+ 
+    </div>
+
+    <div class="subsection">
+                    <h3>6.1 &ensp;Labelled equations</h3>
+            <br/>
+
+
+An equation with a label:
+    <div class="equation">
+
+            \begin{equation}\label{eq:euler}
+e^{i\pi}+1=0.
+\end{equation} 
+    </div>
+
+    <br/>
+
+Equation -
+
+- is due to Euler.    <br/>
+
+An <span class="texttt">align</span> environment:
+    <div class="align">
+
+            \begin{align}\label{eq:polar}
+x & = r\sin\theta \\
+y & = r\cos\theta
+\end{align} 
+    </div>
+
+    <br/>
+
+
+
+An <span class="Group"><span class="tt">equation</span>
+
+</span> containing three <span class="Group"><span class="tt">pmatrix</span>
+
+</span> environments:
+    <div class="equation">
+
+            \begin{equation}
+\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}
+\qquad
+\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}
+\qquad
+\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}
+\end{equation} 
+    </div>
+
+    <br/>
+
+
+
+    </div>
+
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>7&ensp;<span class="bf">Text, </span>
+
+<span class="sl">Text, </span>
+
+<span class="it">Text </span>
+
+<span class="normalfont">and </span>
+
+<span class="sc">Text</span>
+
+</h2>
+            <br/>
+
+    <div class="subsection">
+                    <h3>7.1 &ensp;Spacing problems</h3>
+        
+Here is a sum $1+1=2$. Watch the comma $\sum x_n^2$, is there a space? Seems to be fixed!    <br/>
+
+        <h4 class="subsubsection">
+
+Non-breaking spaces        </h4>
+    
+Tildes don't appear in mathmode. Here is an fbox containing lots of them:
+<br/>    ?contents?
+    <!--div class="::"></div-->
+
+<br/>This is useful to protect mathmode against VLE rewriters.    <br/>
+
+
+
+
+
+
+    </div>
+
+
+    <div class="subsection">
+                    <h3>7.2 &ensp;Accents</h3>
+        
+Delimited
+
+<ul class="itemize">     <li class="item">
+Not spaced: e&#769
+e&#768
+w&#770
+o&#776
+.
+ 
+    </li>
+
+
+     <li class="item">
+Spaced: e&#769
+ e&#768
+ w&#770
+ o&#776
+.
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+Undelimited
+
+<ul class="itemize">     <li class="item">
+Not spaced: e&#769
+e&#768
+w&#770
+o&#776
+.
+ 
+    </li>
+
+
+     <li class="item">
+Spaced: e&#769
+ e&#768
+ w&#770
+ o&#776
+.
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+Some words ...
+
+<ul class="itemize">     <li class="item">
+Crame&#769
+r-Rao.
+ 
+    </li>
+
+
+     <li class="item">
+Y mo&#770
+r coch.
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+
+    </div>
+
+
+    <div class="subsection">
+                    <h3>7.3 &ensp;Escaped characters</h3>
+        
+
+<ul class="itemize">     <li class="item">
+Not spaced: &x
+%x
+$x
+.
+ 
+    </li>
+
+
+     <li class="item">
+Spaced: & x
+% x
+$ x
+.
+ 
+    </li>
+
+
+    </ul>
+
+	    <br/>
+
+We need to be careful with $ x
+characters!    <br/>
+
+
+    </div>
+
+
+    <div class="subsection">
+                    <h3>7.4 &ensp;Font styles</h3>
+        
+Here are some font styles: 
+
+<ul class="itemize">     <li class="item">
+<span class="textbf">bold</span>
+ 
+    </li>
+
+
+     <li class="item">
+<span class="textit">italic</span>
+ 
+    </li>
+
+
+     <li class="item">
+<span class="texttt">teletype</span>
+ 
+    </li>
+
+
+     <li class="item">
+<span class="textsc">small caps</span> 
+ 
+    </li>
+
+
+     <li class="item">
+<span class="textsl">oblique</span>
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+
+    </div>
+
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>8&ensp;Declarations</h2>
+            <br/>
+
+    <div class="subsection">
+                    <h3>8.1 &ensp;Font style</h3>
+        
+    <br/>
+
+TeX-style teletype: <span class="Group"><span class="tt">LatexTree</span>
+
+</span>.
+<br/>LaTeX-style teletype: <span class="texttt">LatexTree</span>.    <br/>
+
+
+<ul class="itemize">     <li class="item">
+No spaces: pre-<span class="Group">-inside-</span>-post
+ 
+    </li>
+
+
+     <li class="item">
+No spaces with TeX-style bold: pre-<span class="Group">-<span class="bf">bold-</span>
+
+</span>-post
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+Remark: unlike Latex the browser compounds font styles:
+
+<ul class="itemize">     <li class="item">
+first <span class="Group"><span class="tt">second <span class="Group"><span class="it">third <span class="Group"><span class="sc">fourth</span>
+
+</span> fifth</span>
+
+</span> sixth</span>
+
+</span> seventh
+ 
+    </li>
+
+
+    </ul>
+
+
+The browser renders `third' and `fifth' are shown in slanted teletype!    <br/>
+
+
+    </div>
+
+
+    <div class="subsection">
+                    <h3>8.2 &ensp;Font size</h3>
+        
+    <br/>
+
+
+<ul class="itemize">     <li class="item">
+tiny
+    <li class="item">
+scriptsize
+    <li class="item">
+footnotesize
+    <li class="item">
+small
+    <li class="item">
+normalsize
+    <li class="item">
+large
+    <li class="item">
+Large
+    <li class="item">
+LARGE
+    <li class="item">
+huge
+    <li class="item">
+Huge
+
+ 
+    </li>
+
+
+
+ 
+    </li>
+
+
+
+ 
+    </li>
+
+
+
+ 
+    </li>
+
+
+
+ 
+    </li>
+
+
+
+ 
+    </li>
+
+
+
+ 
+    </li>
+
+
+
+ 
+    </li>
+
+
+
+ 
+    </li>
+
+
+
+ 
+    </li>
+
+
+    </ul>
+
+
+
+For example 
+
+small
+
+
+and
+
+large.
+
+    <br/>
+
+    <div class="subsection">
+                    <h3>8.3 &ensp;Language declarations</h3>
+        
+    <br/>
+
+pre-<span class="Group">-normal <span class="bf">bold </span>
+
+<span class="it">italic </span>
+
+<span class="normalfont">normal-</span>
+
+</span>-post    <br/>
+
+pre-<span class="Group">-common <span class="cy">cymraeg </span><span class="en">english </span><span class="bi">common-</span></span>-post     <br/>
+
+    <br/>
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>9.2 &ensp;Links</h2>
+        
+    <br/>
+
+Here is a labelled theorem containing a labelled equation.
+    <div class="theo">
+
+    (Pythagoras' Theorem)
+&nbsp;
+<span class="theorem_statement">
+
+    <div class="equation">
+
+            \begin{equation}\label{eq:pythagoras}
+a^2 + b^2 = c^2.
+\end{equation} 
+    </div>
+
+
+</span>
+    </div>
+
+    <br/>
+
+    <div class="subsection">
+                    <h3>9.1 &ensp;Cross-references</h3>
+        
+
+
+<ul class="itemize">     <li class="item">
+Here is a ref -
+
+- to the introduction.
+ 
+    </li>
+
+
+     <li class="item">
+Here is a ref -
+
+- to the current section.
+ 
+    </li>
+
+
+     <li class="item">
+Here is a ref -
+
+- to the current subsection.
+ 
+    </li>
+
+
+     <li class="item">
+Here is a ref -
+
+- to the above theorem.
+ 
+    </li>
+
+
+     <li class="item">
+Here is an eqref -
+
+- to the equation in the above theorem.
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+
+    </div>
+
+
+    <div class="subsection">
+                    <h3>9.2 &ensp;Citations</h3>
+        
+
+<ul class="itemize">     <li class="item">
+A citation -
+
+	[]
+- to the first bibtex entry.
+ 
+    </li>
+
+
+     <li class="item">
+A citation -
+
+	[]
+- to the second bibtex entry.
+ 
+    </li>
+
+
+     <li class="item">
+A citation -
+
+	[]
+- to the first two bibtex entries.
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+
+    </div>
+
+
+    <div class="subsection">
+                    <h3>9.3 &ensp;The hyperref package</h3>
+        
+
+<ul class="itemize">     <li class="item">
+Here is a url: -
+		<a href="http://www.bbc.co.uk/">			http://www.bbc.co.uk/</a>-.
+ 
+    </li>
+
+
+     <li class="item">
+Here is some -
+		<a href="http://www.bbc.co.uk/"><span class="Group">hyperlinked text</span></a>-.
+ 
+    </li>
+
+
+     <li class="item">
+Here is a -<a href=""><span class="Group">named cross-reference</span></a>- to the introduction.
+ 
+    </li>
+
+
+     <li class="item">
+here is an autoref -<a href=""></a>- to the introduction.
+ 
+    </li>
+
+
+     <li class="item">
+Here is a nameref -<a href=""><span class="Group">Introduction</span></a>- to the introduction.
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+
+    </div>
+
+
+        <h3 class="subsection">
+
+Document-level labels        </h3>
+    
+For a viewable links to the document-level label we need to use the <span class="texttt">hyperref</span> command as follows: -<a href=""><span class="Group">back-to-top</span></a>-. There is no number or title associated with the document-level so other xref commands don't know what to display. Document-level labels might be useful to organise documents within and across modules.    <br/>
+
+
+       
+        <h2 class="section">References</h2>
+<ol class="thebibliography">     <li class="bibitem">
+
+Geoffrey R. Grimmett and David R. Stirzaker.
+    ?Command:newblock?
+    <!--div class="Node:Command:newblock"></div--><span class="Group"><span class="em">Probability and Random Processes</span>
+
+</span>.
+    ?Command:newblock?
+    <!--div class="Node:Command:newblock"></div-->Oxford University Press, third edition, 2001.
+ 
+    </li>
+
+
+     <li class="bibitem">
+
+Robert V. Hogg, Joseph W. McKean and Allen T. Craig.
+    ?Command:newblock?
+    <!--div class="Node:Command:newblock"></div--><span class="Group"><span class="em">Introduction to Mathematical Statistics</span>
+
+</span>.
+    ?Command:newblock?
+    <!--div class="Node:Command:newblock"></div-->Prentice Hall, sixth edition, 2005.
+ 
+    </li>
+
+
+    </ol>
+
+    <br/>
+
+    <br/>
+
+
+
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>10.2 &ensp;Counters</h2>
+        
+
+<ul class="itemize">     <li class="item">
+    ?counter?
+    <!--div class="::"></div-->
+
+ 
+    </li>
+
+
+     <li class="item">
+    ?counter?
+    <!--div class="::"></div-->
+
+ 
+    </li>
+
+
+     <li class="item">
+    ?counter?
+    <!--div class="::"></div-->
+
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>11.2 &ensp;Verbatim</h2>
+        
+pre
+    <div class="verbatim">
+
+
+Say \hello wave \goodbye ...
+class A():
+	pass
+class B(A):
+	pass
+
+    </div>
+
+
+post    <br/>
+
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>12.2 &ensp;Videos</h2>
+        
+Embedding videos in PDFs is difficult, and it's better to include hyperlinks to YouTube videos using the <span class="texttt">url</span> and <span class="texttt">href</span> commands.     <br/>
+
+
+        <h3 class="subsection">
+
+<span class="texttt">url</span> commands        </h3>
+    
+Please watch this video: 
+		<a href="https://www.youtube.com/watch?v=oCDXhvXye9E">			https://www.youtube.com/watch?v=oCDXhvXye9E</a>.    <br/>
+
+
+
+
+        <h3 class="subsection">
+
+<span class="texttt">href</span> commands        </h3>
+    
+Please watch this 
+		<a href="https://www.youtube.com/watch?v=oCDXhvXye9E"><span class="Group">video</span></a>.    <br/>
+
+
+
+
+    <div class="subsection">
+                    <h3>12.1 &ensp;<span class="texttt">video</span> environments</h3>
+        
+We define a new float called <span class="Group"><span class="tt">video</span>
+
+</span> which uses the custom <span class="Group"><span class="tt">includevideo</span>
+
+</span> command. This command is intended to mirror the way that <span class="Group"><span class="tt">includegraphics</span>
+
+</span> is used within <span class="Group"><span class="tt">figure</span>
+
+</span> floats. In the PDF version this is again rendered as a hyperlink, but <span class="Group"><span class="tt">LatexTree</span>
+
+</span> embeds the video into the webpage.    <br/>
+
+Why does it need to be a <span class="Group"><span class="tt">float</span>
+
+</span> instead of a simple environment?    <br/>
+
+<br/>
+-- For PDF it's simply a centred/displayed URL in Latex (one line).
+<br/>
+-- For HTML there's no need to float it!    <br/>
+
+However it gives displayed videos the look and feel of figures and tables in terms of boxed, captions, etc. and we can have <span class="Group"><span class="tt">lov</span>
+
+</span> too.    <br/>
+
+
+Note     To get an embed code for a YouTube video, click on <span class="Group"><span class="tt">Share->Embed</span>
+
+</span> under the video and it will generate an entire <span class="Group"><span class="tt">iframe</span>
+
+</span> tag from which the URL can be easily recovered.    <br/>
+
+    <div class="video">
+
+
+    ?opt?
+    <!--div class="::"></div-->    ?arg1?
+    <!--div class="::"></div-->
+		<a href="https://www.youtube.com/embed/oCDXhvXye9E">			https://www.youtube.com/embed/oCDXhvXye9E</a>
+
+    ?lst-entry?
+    <!--div class="::"></div-->    ?caption_text?
+    <!--div class="::"></div-->
+
+
+
+    </div>
+
+    <br/>
+
+    ?Command:appendix?
+    <!--div class="Node:Command:appendix"></div-->
+
+
+
+    </div>
+
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>13.2 &ensp;Jobs List</h2>
+        
+
+<ul class="itemize">     <li class="item">
+MC/MA as forms
+ 
+    </li>
+
+
+     <li class="item">
+Table of contents
+ 
+    </li>
+
+
+     <li class="item">
+Images and videos
+ 
+    </li>
+
+
+     <li class="item">
+Numerals
+ 
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+
+
+    </div>
+
+
+    <div class="section">
+                    <h2>14.2 &ensp;Figures</h2>
+            <br/>
+
+We parse the optional argument to <span class="texttt">includegraphics</span>. The <span class="texttt">Image</span> class has an attribute <span class="texttt">width</span> expressed as a percentage. This is computed from the (optional) <span class="texttt">scale</span> or <span class="texttt">width</span> parameters passed to <span class="texttt">includegraphics</span>.    <br/>
+
+
+<ul class="itemize">     <li class="item">
+<a href=""></a> is the original (scale = 0.25).
+ 
+    </li>
+
+
+     <li class="item">
+<a href=""></a> is the big one (scale = 0.5).
+ 
+    </li>
+
+
+     <li class="item">
+<a href=""></a> is the small one (scale = 0.1).
+ 
+    </li>
+
+
+     <li class="item">
+<a href=""></a> shows a figure layout using <span class="texttt">subfigure</span>.
+ 
+    </li>
+
+
+     <li class="item">
+<a href=""></a> shows a figure layout using <span class="texttt">tabular</span>.  
+    </li>
+
+
+    </ul>
+
+    <br/>
+
+    <div class="figure">
+
+
+    ?options?
+    <!--div class="::"></div-->    ?file?
+    <!--div class="::"></div-->
+
+    ?lst-entry?
+    <!--div class="::"></div-->    ?caption_text?
+    <!--div class="::"></div-->
+
+
+
+    </div>
+
+    <br/>
+
+    <div class="figure">
+
+
+    ?options?
+    <!--div class="::"></div-->    ?file?
+    <!--div class="::"></div-->
+
+    ?lst-entry?
+    <!--div class="::"></div-->    ?caption_text?
+    <!--div class="::"></div-->
+
+
+
+    </div>
+
+    <br/>
+
+    <div class="figure">
+
+
+    ?options?
+    <!--div class="::"></div-->    ?file?
+    <!--div class="::"></div-->
+
+    ?lst-entry?
+    <!--div class="::"></div-->    ?caption_text?
+    <!--div class="::"></div-->
+
+
+
+    </div>
+
+    <br/>
+
+    <div class="figure">
+
+
+    ?Command:subfigure(1)?
+    <!--div class="Node:Command:subfigure"></div-->[Union]<span class="Group">    ?options?
+    <!--div class="::"></div-->    ?file?
+    <!--div class="::"></div-->
+</span>
+    ?Command:subfigure(2)?
+    <!--div class="Node:Command:subfigure"></div-->[Intersection]<span class="Group">    ?options?
+    <!--div class="::"></div-->    ?file?
+    <!--div class="::"></div-->
+</span>
+    ?Command:subfigure(3)?
+    <!--div class="Node:Command:subfigure"></div-->[Complement]<span class="Group">    ?options?
+    <!--div class="::"></div-->    ?file?
+    <!--div class="::"></div-->
+</span>
+    ?lst-entry?
+    <!--div class="::"></div-->    ?caption_text?
+    <!--div class="::"></div-->
+
+
+
+    </div>
+
+    <br/>
+
+
+    ?Command:cleardoublepage?
+    <!--div class="Node:Command:cleardoublepage"></div-->    ?Command:newpage?
+    <!--div class="Node:Command:newpage"></div-->
+
+    </div>
+
+
+    <div class="section">
+                    <h2>15.2 &ensp;Testbed</h2>
+        
+    <div class="figure">
+
+
+    ?options?
+    <!--div class="::"></div-->    ?file?
+    <!--div class="::"></div-->
+
+
+
+    </div>
+
+    <br/>
+
+    <div class="figure">
+
+
+    ?options?
+    <!--div class="::"></div-->    ?file?
+    <!--div class="::"></div-->
+
+    ?lst-entry?
+    <!--div class="::"></div-->    ?caption_text?
+    <!--div class="::"></div-->
+
+
+
+    </div>
+
+    <br/>
+
+Multiple captions:
+    <div class="figure">
+
+
+    ?lst-entry?
+    <!--div class="::"></div-->    ?caption_text?
+    <!--div class="::"></div-->
+
+    ?lst-entry?
+    <!--div class="::"></div-->    ?caption_text?
+    <!--div class="::"></div-->
+
+    ?options?
+    <!--div class="::"></div-->    ?file?
+    <!--div class="::"></div-->
+
+    ?lst-entry?
+    <!--div class="::"></div-->    ?caption_text?
+    <!--div class="::"></div-->
+
+
+
+    </div>
+
+    <br/>
+
+    <br/>
+
+
+    </div>
+
+
+
+
+    </div>
+
+
+
+    </div>
+
+
+		</div>
+		<br/>
+	    <div id="footer">
+	<small><code>Typeset by LatexTree on 10/06/2019</code></small>
+	    </div>
+	</body>
+</html>

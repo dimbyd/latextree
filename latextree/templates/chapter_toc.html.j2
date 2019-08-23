@@ -1,0 +1,17 @@
+
+{% if sections %}
+	{% for sec in sections %}
+		{% if sec.args and 'title' in sec.args %}
+			<p><a href="{{ page_urls[sec] }}">
+			{% with title = sec.args['title'] %}
+				{% include "title.html" %}
+			{% endwith %}
+			</a></p>
+		{% endif %}
+	{% endfor %}
+	{% if bibliography and not chapters %}
+		<p><a href="{{ page_urls[bibliography] }}">
+			References
+		</a></p>
+	{% endif %}
+{% endif %}

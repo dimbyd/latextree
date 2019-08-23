@@ -1,0 +1,74 @@
+{% extends "chapter_detail.html" %}
+
+{% block breadcrumbs %}
+	{{ super() }}
+	{% if section and section.args and 'title' in section.args %}
+		&gt;<a href="{{ page_urls[section] }}">
+		{% with title = section.args['title'] %}
+			{% include "title.html" %}
+		{% endwith %}
+		</a>
+	{% endif %}
+{% endblock %}
+
+{% block content_main %}
+		
+	{% if chapter %}
+		<h1>
+			{{ chapter.number }}.&nbsp;
+			{% with title = chapter.get_title_node() %}
+				{% include "title.html" %}
+			{% endwith %}
+		</h1>
+	{% endif %}
+
+	{% if section and 'title' in section.args %}
+		<h2>
+			{% with title = section.args['title'] %}
+				{% include "title.html" %}
+			{% endwith %}
+		</h2>
+	{% endif %}
+	
+	{% if section.children %}
+
+		{% for node in section.children recursive %}
+
+			{# write node contents but deal with subsections separately #}
+			{# this should probably not be done in LatexTree #} 
+			{% if not node.get_species() == "subsection" %}
+				{% include "node.html" %}
+			{% else %}
+
+				{# subsection number and title #}
+				{% if node.args and 'title' in node.args %}		
+					<h3>
+					{% if chapter %}
+						{{ chapter.number }}.{{ section.number }}.{{ node.number }}&nbsp;
+					{% else %}
+						{{ section.number }}.{{ node.number }}&nbsp;
+					{% endif %}
+					{% with title = node.args['title'] %}
+						{% include "title.html" %}
+					{% endwith %}
+					</h3>
+				{% endif %}
+
+				{# contents #}
+				{% for child in node.children recursive %}
+					{% with node = child %}
+						{% include "node.html" %}
+					{% endwith %}
+				{% endfor %}
+
+			{% endif %}
+		
+		{% endfor %}
+	{% endif %}
+
+{% endblock %}
+
+{#% block browse_horizontal %}
+	{% include "browse_horizontal.html" %}
+{% endblock %#}
+

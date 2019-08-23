@@ -1,0 +1,144 @@
+\documentclass[oneside]{book}
+
+\setcounter{tocdepth}{1} 
+\setcounter{secnumdepth}{2} 
+
+\usepackage{amsmath, amsthm}
+\theoremstyle{plain}
+\newtheorem{theo}{Theorem}%[section] 
+\newtheorem{lem}[theo]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[theo]{Definition}
+\theoremstyle{remark}
+\newtheorem{rmk}[theo]{Remark}
+
+\newtheoremstyle{mystyle}% name
+{3pt}% space above
+{3pt}% space below
+{}% body font
+{}% indent amount
+{}% theorem head font
+{.}% punctuation after theorem head
+{.5em}% space after theorem head
+{}% theorem head spec
+
+\theoremstyle{mystyle}
+\newtheorem{exc}[theo]{Exercise}
+
+\begin{document}
+
+\paragraph{An initial paragraph} at the top ...
+
+\chapter{Intro}
+This is the introduction.
+
+\chapter{Background}
+This is the background.
+
+\chapter{Counters}
+%\renewcommand{\thetheorem}{\alph{theorem}}
+\begin{itemize}
+\item {\tt chapter}: \thechapter, \roman{chapter}
+\item {\tt section}: \thesection, \roman{section}
+\item {\tt subsection}: \thesubsection, \roman{subsection}
+\item {\tt theorem}: \thetheo, \roman{theo}
+\item {\tt equation}: \theequation, \roman{equation}
+\end{itemize}
+
+%--------------------
+\section{Numbered lists}
+\renewcommand{\theenumii}{\Alph{enumii}}
+\begin{enumerate}
+\item (\theenumi, \theenumii)
+    \begin{enumerate}
+    \item (\theenumi, \theenumii)
+    \item (\theenumi, \theenumii)
+    \end{enumerate}
+\item (\theenumi, \theenumii)
+    \begin{enumerate}
+    \item (\theenumi, \theenumii)
+    \item (\theenumi, \theenumii)
+    \item (\theenumi, \theenumii)
+    \end{enumerate}
+\item (\theenumi, \theenumii)
+    \begin{itemize}
+    \item (\theenumi, \theenumii)
+    \item (\theenumi, \theenumii)
+    \end{itemize}
+\item (\theenumi, \theenumii)
+\end{enumerate}
+
+%--------------------
+\section{Internal counters}
+These do not have corresponding {\tt thecounter} commands.
+\begin{itemize}
+\item {\tt tocdepth}: \arabic{tocdepth}
+\item {\tt secnumdepth}: \arabic{secnumdepth}
+\end{itemize}
+
+%--------------------
+\section{Paragraphs}
+The {\tt paragraph} and {\tt subparagraph} counters are only incremented if {\tt secnumdepth} is set to 4 and 5 respectively.
+
+\setcounter{secnumdepth}{5} 
+
+\subsection{SS Title}
+%\subsubsection{SSS Title}
+
+\paragraph{First paragraph} blah blah
+\subparagraph{First subparagraph} blah blah
+
+\begin{itemize}
+\item \theparagraph\ blah %, \arabic{paragraph}
+\item \thesubparagraph\ blah blah %, \arabic{subparagraph}
+\end{itemize}
+
+\paragraph*{This is a starred paragraph.} We can reset {\tt theparagraph}, to {\tt Alph} here ...
+\renewcommand{\theparagraph}{\Alph{paragraph}}
+
+\paragraph{Second paragraph} blah blah
+\subparagraph{Second subparagraph} blah blah
+
+%--------------------
+\section{Theorems}
+
+%\alph{section}
+%\thesection
+%
+%\renewcommand{\thesection}{\thechapter.\alph{section}}
+%\thesection
+%
+%\renewcommand{\thesection}{\alph{chapter}.\alph{section}}
+%\thesection
+
+\begin{defn}
+This is a definition
+\end{defn}
+
+\begin{lem}
+This is a lemma
+\end{lem}
+
+\begin{theo}
+This is a theorem.
+\begin{proof}
+This is a proof
+\end{proof}
+\end{theo}
+
+\subsection{Some remarks}
+
+\begin{rmk}
+This is a remark.
+\end{rmk}
+
+\begin{exc}
+This is an exercise.
+\end{exc}
+
+\alph{chapter}
+
+\thechapter
+
+
+\end{document}

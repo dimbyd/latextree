@@ -1,0 +1,26 @@
+<div class="{{ theorem.species }}">
+{%- set key = theorem.species -%}
+{%- if key in tree.registry.theorem_names -%}
+    <span class="theorem_caption">{{ tree.registry.theorem_names[key] }}&nbsp;
+    {%- if theorem.marker -%}
+        {%- with arg = theorem.marker -%}
+            {% include "argument.html.j2" %}
+        {%- endwith -%}
+    {%- endif -%}&nbsp;
+    </span>
+{% endif %}
+{%- if theorem.args['title'] -%}
+    <span class="theorem_title">
+    {%- for child in theorem.args['title'].children -%}
+        {%- with node = child -%}
+            {%- include "node.html.j2" -%}
+        {%- endwith -%}
+    {% endfor -%}
+    </span>
+{%- endif -%}
+    <div class="theorem_statement">
+    {%- for node in theorem.children recursive -%}
+        {%- include "node.html.j2" -%}
+    {%- endfor -%}
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<p class="left">
+    {% if prv %}
+        <a href="{{ page_urls[prv] }}">
+            &larr;&nbsp;
+            {% if prv.args and 'title' in prv.args %}
+				{% with title = prv.args['title'] %}
+					{% include "title.html" %}
+				{% endwith %}
+			{% endif %}
+        </a>
+    {% endif %}
+</p>
+<p class="right">
+    {% if nxt %}
+        <a href="{{ page_urls[nxt] }}">
+			{% if nxt.args and 'title' in nxt.args %}
+				{% with title = nxt.get_title_node() %}
+					{% include "title.html" %}
+				{% endwith %}
+			{% endif %}
+            &nbsp;&rarr;
+        </a>
+    {% endif %}
+</p>
+<div style="clear: both;"></div>

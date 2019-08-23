@@ -1,0 +1,202 @@
+
+@import url('latextree.css');
+/* @import url('headings.css'); */
+@import url('tabular.css');
+@import url('theorem.css');
+/* @import url('exam.css'); */
+@import url('align.css');
+@import url('fonts.css');
+
+body { 
+    line-height: 1.2; 
+}
+
+/* monospace font (for code blocks) */
+pre.verbatim {
+    display:    block;
+    font-family:monospace;
+    font-size:  110%;
+    padding:    10px;
+    background:lightgrey;
+    border:     1px solid black;
+    /* white-space: 	pre; */
+}
+
+#content-main {
+    width: 800px;
+    min-width: 400px;
+    min-height:500px;
+    margin:auto;
+    border:1px solid black;
+    border-style:double;
+    padding:25px;
+}
+
+#footer {
+    display: block;
+    text-align: center;
+    font-size: x-small;
+    color: grey;
+}
+
+hr {
+	color:black;
+    height:1px;
+    border:1;
+}
+
+.proof::after {
+    content: '\25A1'; /* hex value */
+    display: block;
+    text-align:right;
+    padding-right:10px;
+}
+
+ol.thebibliography {
+    /* border: 1px solid black; */
+    counter-reset: list;
+    list-style: none;
+    padding-left: 0;
+}
+ol.thebibliography > li:before {
+    content:"[" counter(list, decimal) "] ";
+    counter-increment: list;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0.5em;
+
+}
+
+span.theorem_title::before {
+    content: "(";
+}
+span.theorem_title::after {
+    content: ")";
+}
+
+.bi { color: black; }
+.cy { color: red; }
+.en { color: blue; }
+
+
+.Group {
+    font-style: normal; 
+    font-weight: normal;    
+}
+
+/* .center, .centering {
+    text-align:center;
+}
+.flushleft, .raggedright {
+    text-align:left;
+}
+.flushright, .raggedleft {
+    text-align:right;
+} */
+
+br {
+    line-height: 100%;
+ }
+ 
+.tiny, .scriptsize {font-size:xx-small}
+.footnotesize {font-size:x-small}
+.small {font-size:small}
+.normalsize {font-size:medium}
+.large {font-size:large}
+.Large, .LARGE {font-size:x-large}
+.huge, .Huge {font-size:xx-large}
+
+.maketitle {text-align:center}
+.doctitle {font-size:xx-large}
+.docauthor {font-size:x-large}
+.docdate {font-size:large}
+
+.toc_title{font-size:large;font-weight:bold}
+.abstract_title{font-size:large;font-weight:bold;font-style:italic;}
+.chapter_title{font-size:xx-large;font-weight:bold}
+.section_title{font-size:x-large;font-weight:bold}
+.subsection_title{font-size:large;font-weight:bold}
+.subsubsection_title{font-size:normal;font-weight:bold}
+
+.fbox{display:inline-block;border:1px solid black}
+.framed{border:1px solid black}
+
+.caption {
+    text-align:center;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.chapter_title {margin-top:45px;}
+.section_title {margin-top:35px;}
+.subsection_title {margin-top:25px;}
+.subsubsection_title {margin-top:15px;}
+
+.chapter_title {margin-bottom:20px;}
+.section_title {margin-bottom:10px;background:lightgray;}
+.subsection_title {margin-bottom:10px;}
+.subsubsection_title {margin-bottom:5px;}
+
+/* table.enumerate td {border:1px solid black;}
+table.itemize td {border:1px solid black;} */
+table.enumerate tr {vertical-align:top;}
+table.itemize tr {vertical-align:top;}
+table.enumerate td {padding:4px;}
+table.itemize td {padding:4px;}
+
+table.enumerate, table.itemize {
+    margin-left:10px;
+    margin-top:5px;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+a:hover {
+    color: purple;
+}
+
+.abstract_title {
+    text-align:center;
+    font-size: medium;
+    font-style: bold;
+}
+.abstract {
+    /* margin-top: 40px; */
+    /* margin-bottom: 40px; */
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: justify;
+    font-size: small;
+}
+
+
+div.table, div.figure {
+    /* border:1px double #000; */
+    padding: 5px 1px;
+}
+
+table.displaymath {
+    display:block;
+    /* border:1px solid green; */
+    width:100%;
+}
+td.displaymath {
+    display:inline-block;
+    /* border:1px solid black; */
+    width:100%;
+}
+td.equation_number{
+    display:inline-block;
+    /* border:1px solid red; */
+    text-align:right;
+}
+table.thebibliography tr {vertical-align:top;}
+.bib_title{font-size:x-large;}
+
+.minipage {
+    display:inline-block;
+    vertical-align: top;
+    /* border:1px solid green; */
+}

@@ -1,0 +1,25 @@
+{% extends "index.html.j2" %}
+
+{% if sections or chapters %}
+	{% block breadcrumbs %}
+		{{ super() }}&gt; 
+		<a href="{{ page_urls[bibliography] }}">{% if chapters %}Bibliography{% else %}References{% endif %}<a>
+	{% endblock %}
+{% endif %}
+
+{% block content_main %}
+	<div class="commands">
+	    \( {{ newcommands | safe }} \)
+	</div>
+
+	{% if chapters %}
+        <h1 class="chapter">Bibliography</h1>
+    {% else %}
+        <h1 class="section">References</h1>
+    {% endif %}
+    
+	{% include "bibliography.html" %}
+
+{% endblock %}
+
+

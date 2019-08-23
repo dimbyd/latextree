@@ -1,0 +1,128 @@
+{% extends "base.html.j2" %}
+
+{% block title %}
+	{% if tree.preamble.title %} 
+	<title>
+		{% with title = tree.preamble.title %}
+			{% include "title.html.j2" %}
+		{% endwith %}
+	</title>
+	{% endif %}
+{% endblock %}
+
+{# 
+	newcommands: css div.macros{display: None;) 
+	we put in strict mathmode delimiters \( ... \)
+#}
+{% block macros %}
+	<div class="macros">
+	{% if tree.preamble.newcommands %}
+		{% for cmd in tree.preamble.newcommands %}
+			\({{ cmd | safe }}\)
+		{% endfor %}
+	{% endif %}
+	</div>
+{% endblock %}
+
+{% block institution %}
+	Cardiff School of Mathematics
+{% endblock %}
+
+{% block breadcrumbs %}
+	{% if tree.preamble.modulecode %} {{ tree.preamble.modulecode }}&nbsp;&gt; {% endif %}
+    <a href="index.html.j2">
+		{% with group = tree.preamble.title %}
+			{% include "group.html.j2" %}
+		{% endwith %}
+	</a>
+{% endblock %}
+
+{% block content_main %}
+
+	{# show document info on index page (title, author, etc) #}
+	<h1 class="booktitle">
+	<table>
+		{% if tree.preamble.title %}
+		<tr><th align="left">Title</th><td>
+			{% with group = tree.preamble.title %}
+				{% include "group.html.j2" %}
+			{% endwith %}
+		</td></tr>
+		{% endif %}
+		{% if tree.preamble.author %}
+			<tr><th align="left">Author</th><td>
+			{% with group = tree.preamble.author %}
+				{% include "group.html.j2" %}
+			{% endwith %}
+			</td></tr>
+		{% endif %}
+		{% if tree.preamble.date %}
+		<tr><th align="left">Date</th><td>
+			{% with group = tree.preamble.date %}
+				{% include "group.html.j2" %}
+			{% endwith %}
+		</td></tr>
+		{% endif %}
+	</table>
+	</h1>
+
+	{# ouput any content that preceeds the first chapter/section
+		- this might be all of it (for documents with no chapters or sections)
+	#}
+	{% if document %}
+		HELLO
+		{% for child in document.children recursive %}
+			{% if child.species not in ["chapter", "section", "bibliography"] %}
+				{% with node = child %}
+					{% include "node.html.j2" %}
+				{% endwith %}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+
+	{# include table-of-contents to chapters/sections #}
+	{% if chapters or sections %}
+		{% include "toc.html.j2" %}
+	{% else %}
+		HELLO2
+		{% if bibliography %}
+			HELLO3
+			{% include "bibliography.html.j2" %}	{# for single-page  #}
+		{% endif %}
+	{% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+	{% if chapters or sections %}
+	<h2 style="text-align:center;">
+		<a href="index.html">
+			{% with group = tree.preamble.title %}
+				{% include "group.html" %}
+			{% endwith %}
+		</a>
+	</h2>
+		{% if sections %}
+			<h3>Sections</h3>
+			{% include "chapter_toc.html" %}
+		{% endif %}
+
+		{% if chapters %}
+			<h3>Chapters</h3>
+			{% include "toc.html" %}
+		{% endif %}
+
+	{% endif %}
+{% endblock %}
+
+
+{% block browse_horizontal %}
+	{% include "browse_horizontal.html.j2" %}
+{% endblock %}
+
+
+
+
+
+
+

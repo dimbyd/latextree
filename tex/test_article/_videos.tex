@@ -1,0 +1,52 @@
+% !TEX root = main.tex
+
+\section{Videos}
+Embedding videos in PDFs is difficult and unreliable, it's much easier to include hyperlinks to online videos using the \texttt{url} and \texttt{href} commands.
+
+\subsection{\texttt{url} commands}
+Please watch this video: \url{https://www.youtube.com/watch?v=oCDXhvXye9E}.
+
+\subsection{\texttt{href} commands}
+Please watch this \href{https://www.youtube.com/watch?v=oCDXhvXye9E}{video}.
+
+\subsection{Floating \texttt{video} environments}
+We define a new float called {\tt video} which uses the custom {\tt includevideo} command. This command is intended to mirror the way that {\tt includegraphics} is used within {\tt figure} floats. In the PDF version this is again rendered as a hyperlink, but {\tt LatexTree} embeds the video into the webpage.
+
+Why does it need to be a {\tt float} instead of a simple environment?
+\begin{itemize}
+\item For PDF it's simply a centred/displayed URL in Latex (one line).
+\item For HTML there's no need to float it!
+\end{itemize}
+Nevertheless it gives displayed videos the look and feel of figures and tables in terms of boxes, captions, etc. and we can have a list-of-videos ({\tt lov}) too.
+
+To get an embed code for a YouTube video, click on {\tt Share->Embed} under the video and it will generate an entire {\tt iframe} tag from which the URL can be easily recovered.
+
+\begin{video}
+\centering
+\includevideo[scale=0.5]{https://www.youtube.com/embed/oCDXhvXye9E}
+\caption{Listen and learn folks!\label{vid:orange}}
+\end{video}
+
+\subsection{Beltram Vol. I}
+\begin{video}
+\centering
+\small
+\begin{tabular}{|c||c|}
+\hline
+\includevideo{https://www.youtube.com/embed/TZI0bwuF_bU}
+&
+\includevideo{https://www.youtube.com/embed/DprIo82yALY}
+\\
+Acid Over & We Gonna Rock \\ 
+\hline\hline
+\includevideo{https://www.youtube.com/embed/6iDz648nzT8}
+&
+\includevideo{https://www.youtube.com/embed/2MtUXW4_0BY}
+\\
+Passion & Last Rhythm \\
+\hline
+\end{tabular}
+\caption{Four aces $\heartsuit\diamondsuit\clubsuit\spadesuit$\label{vids:choons}}
+\end{video}
+
+

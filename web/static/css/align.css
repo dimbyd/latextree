@@ -1,0 +1,10 @@
+
+.center, .centering {
+    text-align:center;
+}
+.flushleft, .raggedright {
+    text-align:left;
+}
+.flushright, .raggedleft {
+    text-align:right;
+}

@@ -1,0 +1,17 @@
+<div class="{{ env.species }}">
+    {%- if env.species in ['abstract', 'preface'] -%}
+        <div class="{{ env.species }}_title">
+		{%- set key = env.species + 'name' -%}
+	    {%- if key in tree.registry.names -%}
+            {% with name = tree.registry.names[key] %}
+                {% include "name.html.j2" %}
+            {% endwith %}
+        {% else %}
+            {{ env.species | title }}
+        {% endif %}
+        </div>
+    {%- endif -%}
+    {%- for node in env.children recursive -%}
+        {%- include "node.html.j2" -%}
+    {%- endfor -%}
+</div>

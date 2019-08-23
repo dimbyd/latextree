@@ -1,0 +1,51 @@
+% !TEX root = main.tex
+
+\section{Tables}
+
+\subsection{Inline}
+An inline \texttt{tabular} environment:
+\begin{tabular}{|ccc|}\hline
+$\alpha$ & $\beta$ & $\gamma$ \\ \hline
+$1/2$ & $1/3$ & $1/6$ \\ \hline
+\end{tabular}
+
+\subsection{Display}
+A centred \texttt{tabular} environment:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+a & b & c \\
+\hline
+d & e & f \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Floats}
+
+A {\tt table} environment:
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c||c|c|c|} \hline
+Set Theory 		& 			& Logic			&		& \\ \hline
+Union			& $A\cup B$	& Disjunction 	& OR 	& $\lor$	\\
+Intersection		& $A\cap B$	& Conjunction	& AND 	& $\land$\\
+Complement		& $A^c$		& Negation		& NOT 	& $\lnot$	\\ \hline
+\end{tabular}
+\caption{Logic and Set Theory}
+\end{table}
+
+A {\tt table} environment with a starred {\tt caption}:
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+a & b & c \\
+\hline
+d & e & f \\
+\hline
+\end{tabular}
+\caption*{Another table}
+\end{table}
+
+

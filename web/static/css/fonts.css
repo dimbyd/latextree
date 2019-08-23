@@ -1,0 +1,26 @@
+
+/* emphasis font */
+/* can we reset this using \renewcommand ? */
+span.emph {
+	font-style: italic;
+}
+
+/* font styles */
+.textbf, .bf {
+	font-weight: bold;
+}
+.textit, .it {
+	font-style: italic;
+}
+.texttt, .tt {
+	font-family: monospace;
+}
+.textsc, .sc {
+	font-variant: small-caps;
+}
+.textsl, .sl {
+	font-style: oblique;
+}
+.underline {
+	text-decoration: underline;
+}

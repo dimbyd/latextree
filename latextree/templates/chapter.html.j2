@@ -1,0 +1,25 @@
+{% extends "plain.html.j2" %}
+
+{% block title %}
+<title>
+	{% if chapter and 'title' in chapter.args %} 
+		{% with title = chapter.args['title'] %}
+			{% include "title.html.j2" %}
+		{% endwith %}
+	{% endif %}
+</title>
+{% endblock %}
+
+{% block content_main %}	
+
+	{# content before first section #}
+	{%- for node in chapter.children if not node.species == "section" recursive -%}
+		{% include "node.html.j2" %}
+	{%- endfor -%}
+
+	{% if sections %}
+		<h3>Sections</h3>
+		{% include "chapter_toc.html" %}
+	{% endif %}
+			
+{% endblock %}

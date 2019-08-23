@@ -1,0 +1,22 @@
+{%- set ch = title.get_ancestor('chapter') -%}
+{%- set se = title.get_ancestor('section') -%}
+{%- set ss = title.get_ancestor('subsection') -%}
+{%- if ch and ch.marker %}
+	{% with arg = ch.marker %}
+		{% include "argument.html.j2" %}
+	{% endwith %}
+	{%- if se and se.marker -%}.{{ se.marker }}{%- endif -%}{%- if ss -%}.{{ ss.marker }}{%- endif -%}&ensp;
+{%- elif se -%}
+	{{ se.marker }}{%- if ss -%}.{{ ss.marker }} {%- endif -%}&ensp;
+{%- elif ss -%}
+	{{ ss.marker }}&ensp;
+{%- endif -%}
+{%- if title.species == 'Group' -%}
+	{%- with group = title -%}
+		{%- include "group.html.j2" -%}
+	{%- endwith -%}
+{%- else -%}
+	{%- with node = title -%}
+		{%- include "node.html.j2" -%}
+	{%- endwith -%}
+{%- endif -%}

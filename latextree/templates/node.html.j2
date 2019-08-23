@@ -1,0 +1,175 @@
+{%- if node.genus == "Content" -%}
+    {%- include "content.html.j2" -%}
+
+{%- elif node.genus == "Section" -%}
+    {% include "section.html.j2" %}
+
+{%- elif node.genus == "Item" -%}
+    {%- with item = node -%}
+        {%- include "item.html.j2" -%}
+    {%- endwith -%}
+
+{%- elif node.genus == "List" -%}
+    {%- with list = node -%}
+        {%- include "list.html.j2" -%}
+    {%- endwith -%}
+
+{%- elif node.genus == "Theorem" -%}
+    {% with theorem = node %}
+        {% include "theorem.html.j2" %}
+    {%- endwith -%}
+
+{%- elif node.species in ["Comment", "label"] -%}
+    {# do nothing #}
+
+{%- elif node.species in ["input", "include"] -%}
+    {%- for child in node.children %}
+        {%- with node = child -%}
+            {%- include "node.html.j2" -%}
+        {%- endwith -%}
+    {% endfor %}    
+
+{%- elif node.species == 'fbox' -%}
+    <span class="fbox">
+    {%- with arg = node.args['contents'] -%}
+        {%- include "argument.html.j2" -%}    
+    {%- endwith -%}
+    </span>
+
+{%- elif node.species in ['cy', 'en', 'bi'] -%}
+    <span class="{{ node.species }}">{{ loop(node.children) }}</span>
+
+{%- elif node.species == 'maketitle' -%}
+    {% with preamble = tree.preamble %}
+        {% include "maketitle.html.j2" %}
+    {% endwith %}
+
+{%- elif node.species == 'caption' -%}
+    {% with caption = node %}
+        {% include "caption.html.j2" %}
+    {% endwith %}
+
+{%- elif node.species == 'lipsum' -%}
+    {% set text = lipsum(1) %}
+    {{ text }}
+
+{%- elif node.species == 'tableofcontents' -%}
+    {%- include "toc.html.j2" -%}
+
+{%- elif node.species == "Inline" -%} 
+    {{ node.chars() | safe }}
+
+{% elif node.species == 'Display' or node.genus == "Displaymath" -%}
+<table class="displaymath" {% if node in xrefs %}id="{{ xrefs[node].label }}"{% endif %}>
+<tr id="{{ node.species }}">
+    <td class="displaymath">{{ node.chars() | safe }}</td>
+    <td class="equation_number">
+    {%- if node.marker -%}
+        {%- with arg = node.marker %}
+            ({%- include "argument.html.j2" -%})
+        {%- endwith -%}
+    {%- endif -%}
+    </td>
+</tr>
+</table>
+    
+{%- elif node.species == "Group" -%}
+    {%- with group = node -%}
+        {%- include "group.html.j2" -%}
+    {%- endwith -%}
+
+{%- elif node.species == "proof" -%}
+    <div class="proof"><i>Proof.</i>&emsp;
+    {%- for child in node.children %}
+        {% with node = child -%}
+            {%- include "node.html.j2" -%}
+        {%- endwith -%}
+    {% endfor %}
+    </div>
+
+{%- elif node.symbol -%} 
+    {%- if node.symbol in accents -%}
+        {%- with arg = node.args['char'] -%}
+            {%- include "argument.html.j2" -%}
+        {%- endwith -%}&#{{ accents[node.symbol] }}
+    {%- elif node.genus == 'Special' -%}
+        {{ node.symbol + node.post_space }}
+    {%- endif -%}
+
+{% elif node.genus == "Numeric" %}
+    <span class="{{ node.species }}">
+    {%- for child in node.children %}
+        {%- with node = child -%}
+            {%- include "node.html.j2" -%}
+        {%- endwith -%}
+    {%- endfor -%}
+    </span>
+
+{% elif node.genus == "Alignment" %}
+    {% include "alignment.html.j2" %}
+
+{% elif node.genus == "Xref" %}
+	{%- include "xref.html.j2" -%}
+
+{% elif node.genus == "Hyperref" %}
+	{%- include "hyperref.html.j2" -%}
+
+{%- elif node.genus == "FontStyle" -%}
+    {% include "fontstyle.html.j2" %}
+
+{%- elif node.genus == "FontSize" -%}
+    {% include "fontsize.html.j2" %}
+
+{%- elif node.species == "includegraphics" -%}
+    {%- if node in tree.image_files -%}
+        <img style="width:{% if node.width %}{{ node.width }}{% else %}auto{% endif %};" 
+            src="./static/img/{{ tree.image_files[node] }}.png"/>
+    {%- endif -%}
+
+{%- elif node.species == "includevideo" -%}
+    {%- if node in tree.video_urls -%}
+	    <iframe width="{% if node.width %}{{ node.width }}{% else %}auto{% endif %}" 
+            src="{{ tree.video_urls[node] }}" allowfullscreen></iframe>
+    {%- endif -%}
+
+{%- elif node.species == "minipage" -%}
+    <div class="minipage" style="width:{% if node.width %}{{ node.width }}{% else %}100%{% endif %};">
+    {%- for child in node.children %}
+        {%- with node = child -%}
+            {%- include "node.html.j2" -%}
+        {%- endwith -%}
+    {%- endfor -%}  
+    </div>  
+
+{%- elif node.species in ['tabular', 'Row', 'Cell', 'hline'] -%}
+    {%- include "tabular.html.j2" -%}
+
+{% elif node.genus == "Verbatim" %}
+    {% include "verbatim.html.j2" %}
+
+{% elif node.species == 'par' or node.species == 'newblock' or node.genus == "Break" %}
+<br/>
+
+{% elif node.genus == "Horizontal" or node.species == "ActiveCharacter" %}
+&nbsp;
+
+{% elif node.family == "Environment" or node.species in tree.env_names %}
+    {% with env = node %}
+        {%- include "environment.html.j2" -%}
+    {% endwith %}
+
+{% elif node.family == "Command" %}
+    {% with cmd = node %}
+        {% include "cmd.html.j2" %}
+    {% endwith %}
+
+{% elif node.family == "Declaration" %}
+    {% with cmd = node %}
+        {% include "cmd.html.j2" %}
+    {% endwith %}
+
+{# unlisted elements #}
+{%- else -%}
+    ?? {{ node }} ??
+    <!--div class="{{ node.family }}:{{ node.genus }}:{{ node.species }}">{{ loop(node.children) }}</div-->
+{%- endif -%}

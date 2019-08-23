@@ -1,0 +1,38 @@
+{% if not node.starred %}
+
+    <div class="{{ node.species }}{% if node.starred %}_heading{% endif %}"{% if node.label %}, id="{{ node.label }}"{% endif %}>
+        {% if 'title' in node.args %}
+        <div class="{{ node.species }}_title">
+        {% with title = node.args['title'] %}
+            {%- include "title.html.j2" -%}
+        {% endwith %}
+        </div>
+        {% endif %}
+        {{ loop(node.children) }}
+    </div>
+{%- else -%}
+    {% if node.species == "chapter" %}
+        <h1 class="chapter"{% if self.label %}, id="{{ self.label }}"{% endif %}>
+    {% elif node.species == "section" %}
+        <h2 class="section"{% if self.label %}, id="{{ self.label }}"{% endif %}>
+    {% elif node.species == "subsection" %}
+        <h3 class="subsection"{% if self.label %}, id="{{ self.label }}"{% endif %}>
+    {% elif node.species == "subsubsection" %}
+        <h4 class="subsubsection"{% if self.label %}, id="{{ self.label }}"{% endif %}>
+    {% endif %}
+    {% if 'title' in node.args %}
+        {% with heading = node.args['title'] %}
+            {% include "heading.html.j2" %}
+        {% endwith %}
+    {% endif %}
+    {% if node.species == "chapter" %}
+        </h1>
+    {% elif node.species == "section" %}
+        </h2>
+    {% elif node.species == "subsection" %}
+        </h3>
+    {% elif node.species == "subsubsection" %}
+        </h4>
+    {% endif %}
+    {{ loop(node.children) }}
+{%- endif -%}

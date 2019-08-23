@@ -1,0 +1,39 @@
+{%- if node.species in ['url', 'href'] -%}
+	{%- if 'url' in node.args -%}
+		{%- set url = node.args['url'].children[0].chars() -%}
+		<a href="{{ url | safe }}">
+		{%- if node.species == 'url' -%}
+			{{ url }}
+		{%- elif node.species == 'href' and 'text' in node.args -%}
+			{%- with node = node.args['text'] -%}
+				{%- include "node.html.j2" -%}
+			{%- endwith -%}
+        {%- endif -%}
+    	</a>
+	{%- endif -%}
+{%- elif 'key' in node.args -%}
+	{%- set key = node.args['key'].children[0].chars() -%}
+	{%- set target = tree.labels[key] -%}
+	{%- if target in xrefs %}
+		<a href="{{ xrefs[target].url | safe }}">
+		{%- if node.species == "autoref" -%}
+			{{ target.species | title }}&nbsp;
+			{%- if target.marker -%}
+				{%- with arg = target.marker -%}
+					{%- include "argument.html.j2" -%}
+				{%- endwith -%}
+			{%- endif -%}
+		{%- elif node.species == "nameref" -%}
+			{%- if 'title' in target.args -%}
+				{%- with title = target.args['title'] -%}
+					{%- include "title.html.j2" -%}
+				{%- endwith -%}
+			{%- endif -%}
+		{%- elif node.species == 'hyperref' and 'text' in node.args -%}
+			{%- with node = node.args['text'] -%}
+				{%- include "node.html.j2" -%}
+			{%- endwith -%}
+		{%- endif -%}
+	{%- endif -%}
+    </a>
+{%- endif -%}

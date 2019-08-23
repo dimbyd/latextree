@@ -1,0 +1,10 @@
+{% for arg in cmd.args recursive %}
+    {% with node = arg %}
+        {% include "node.html.j2" %}
+    {% endwith %}
+{% endfor %}
+{% for child in cmd.children recursive %}
+    {% with node = child %}
+        {% include "node.html.j2" %}
+    {% endwith %}
+{% endfor %}

@@ -1,0 +1,7 @@
+{%- if cc.symbol in accents -%}
+    {%- with arg = cc.args['char'] -%}
+        {%- include "argument.html.j2" -%}
+    {%- endwith -%}&#{{ accents[cc.symbol] }}
+{%- elif cc.genus == 'Special' -%}
+    {{ cc.symbol + cc.post_space }}
+{%- endif -%}

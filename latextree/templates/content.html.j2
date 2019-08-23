@@ -1,0 +1,7 @@
+{%- if node.species == "Text" -%}
+    {%- if not node.content == '\n' -%}
+        {{ node.content | safe }}
+    {%- endif -%}
+{%- elif node.species == "Numeric" -%}
+    {{ node.content | string }}
+{%- endif -%}

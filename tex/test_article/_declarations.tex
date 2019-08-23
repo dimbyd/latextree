@@ -1,0 +1,57 @@
+% !TEX root = main.tex
+
+\section{Declarations}
+
+%--------------------
+\subsection{Font style}
+\label{ss:font-style-dec}
+
+TeX-style teletype: {\tt LatexTree}.
+\par
+LaTeX-style teletype: \texttt{LatexTree}.
+
+\begin{itemize}
+\item No spaces: pre-{-inside-}-post
+\item No spaces with TeX-style bold: pre-{-\bf bold-}-post
+\end{itemize}
+
+Remark: unlike Latex the browser compounds font styles:
+\begin{itemize}
+\item 
+first {\tt second {\it third {\sc fourth} fifth} sixth} seventh
+\end{itemize}
+The browser renders `third' and `fifth' are shown in slanted teletype!
+
+%--------------------
+\subsection{Font style}
+\label{ss:font-style-dec}
+
+\fbox{
+\bf bf
+\rm rm
+\sf sf
+\it it
+\sl sl
+\sc sc
+\tt tt
+\em em
+}
+
+pre-{-normal \bf bold \it italic \sc smallcaps \tt teletype \normalfont normal-}-post
+
+%--------------------
+\subsection{Font size}
+\label{ss:font-size-dec}
+
+\fbox{
+\tiny tiny
+\scriptsize scriptsize
+\footnotesize footnotesize
+\small small
+\normalsize normalsize
+\large large
+\Large Large
+\huge huge
+\Huge Huge
+}
+

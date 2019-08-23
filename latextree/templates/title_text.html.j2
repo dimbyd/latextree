@@ -1,0 +1,18 @@
+{%- if title.species == 'Group' -%}
+	{%- for child in title.children recursive -%}
+		{% if child.species == 'Text' %}
+			{{ child.content }}
+		{% elif child.species in ['cy','en'] %}
+			{% for child2 in child.children %}
+				{% if child2.species == 'Text' %}
+					{{ child2.content }}
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+		{%- if not loop.last -%} | {%- endif -%}
+	{%- endfor -%}
+{% else %}
+	{% if title.species == 'Text' %}
+		{{ title.content }}
+	{% endif %}
+{%- endif -%}

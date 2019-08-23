@@ -1,0 +1,37 @@
+{% extends "base.html.j2" %}
+
+{% block title %}
+<title>
+	{%- if tree.preamble.title -%} 
+		{%- with title = tree.preamble.title -%}
+			{%- include "title_text.html.j2" -%}
+		{%- endwith -%}
+	{%- endif -%}
+</title>
+{% endblock %}
+
+{% block toc %}
+	x{% for sec in tree.toc.Document %}
+		{{ sec.marker }} - {{ sec.title }}
+	{% endfor %}
+{% endblock %}
+
+{% block content_main %}
+	{%- if tree.doc_root -%}
+		{%- for node in tree.doc_root.children recursive -%}
+			{%- include "node.html.j2" -%}
+		{% endfor %}
+	{% endif %}
+{% endblock %}
+
+{% block footer %}
+	<small><code>Typeset by LatexTree on {{ today }}</code></small>
+{% endblock %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+%------------------------------------------------
+% main.tex - Test document for LatexTree
+%------------------------------------------------
+\documentclass[12pt]{article}
+
+\usepackage{camnotes}
+%\usepackage{camtheorem}
+
+% document info
+\title{Test Article}
+\author{DE}
+\date{June 2019}
+
+% layout
+\usepackage[margin=20mm, a4paper]{geometry}
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{2ex}
+%\pagestyle{plain}
+
+% theorems
+\newtheorem{theo}{Theorem}[section] 
+\newtheorem{lem}[theo]{Lemma}
+\newtheorem{defn}[theo]{Definition}
+\newtheorem{rmk}[theo]{Remark}
+\newtheorem{exc}[theo]{Exercise}
+
+% dummy text
+\usepackage{lipsum}
+
+% hyperref
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, citecolor=blue, linkcolor=blue}
+
+
+% language declarations
+%\newcommand{\cy}{\color{red}}
+%\newcommand{\en}{\color{blue}}
+%\newcommand{\bi}{\color{black}}
+ 
+% images
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+
+% videos
+%\newcommand{\includevideo}[2][1]{\url{#2}}
+\providecommand{\includevideo}{}
+\renewcommand{\includevideo}[2][1]{\href{#2}{\small\tt Link To Video}}
+\usepackage{float}
+\floatstyle{boxed}
+\newfloat{video}{!ht}{lov}[section]
+\floatname{video}{Video}
+\usepackage{caption}
+\captionsetup[video]{labelfont=normalfont}
+
+% tweaks
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{5}
+
+\usepackage{framed}
+
+\usepackage{tocloft}
+\setlength\cftbeforesecskip{1pt}
+\renewcommand{\cftsecdotsep}{7}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
+
+%----------------------------------------
+\begin{document}\label{doc:testdoc}
+\maketitle
+\tableofcontents
+\input{_abstract}
+\input{_intro}
+\input{_sections}
+\input{_lists}
+\input{_theorems}
+\input{_environments}
+\input{_maths}
+\input{_text}
+\input{_declarations}
+\input{_tables}
+\input{_links}
+\input{_verbatim}
+\input{_figures}
+\input{_videos}
+
+Can we link to a dropbox file?
+
+\includevideo{https://www.dropbox.com/s/p4le3wrdn9ti6wf/bluebird.jpeg}
+
+
+\input{_bibliography}
+\end{document}
+%----------------------------------------
