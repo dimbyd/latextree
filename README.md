@@ -1,3 +1,0 @@
-# This is the `latextree` package
-Latex Parser
-This is the long version .....
