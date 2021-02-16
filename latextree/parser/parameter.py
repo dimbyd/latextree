@@ -1,20 +1,20 @@
 # parameters.py
 r'''
 Module for dealing with parameter definitions
-    parameters are placeholders (params)
+    parameters are placeholders 
     arguments are the actual values
 
-TeX has only mandatory arguments which can be specified in several ways
+TeX has only mandatory arguments. These can be specified in several ways
         \textbf{hello}
         \textbf\LaTeX
         \textbf1
         \textbf A
  
-ArgTable objects map parameter names onto Node objects.
+An ArgTable object maps parameter names onto Node objects.
 These Node objects can be one of three types:
     Group   for \textbf{hello}    # list of nodes
     OptArg  for \item[*]          # list of nodes
-    Command   for \textbf\LaTeX     # single node    
+    Command   for \textbf\LaTeX   # single node    
     Text    for \textbf1          # single node    
     Text    for \textbf A         # single node    
 
@@ -25,11 +25,11 @@ we just take the next token as the argument, convert to a LatexTree node of some
 then assign this to the ArgTable agains the argument name (defined in coredefs.py)
 
 This module defines the following:
-1. Parameter       - named tuple with argument type (s|o|m) and argument name 
+1. Parameter    - named tuple with argument type (s|o|m) and argument name 
 2. OptArg       - subclass of Node to represent an optional argument 
-3. ArgTable     - ordered dict maps parameter name to Node objects
+3. ArgTable     - ordered dict mapping parameter names to Node objects
 
-ArgTable is based on an ordered dictionary to ensure that we can recover the Latex source correctly.
+ArgTable is an ordered dictionary so that we can reconstruct the source Latex correctly.
 
 4. parse_definition
     - extracts command definitions from .coredefs.py in the form
@@ -38,23 +38,23 @@ ArgTable is based on an ordered dictionary to ensure that we can recover the Lat
 
 
 '''
+from collections import namedtuple, OrderedDict
+from .content import Text, Number
+from .group import Group
+from .node import Node
+from .tokens import Token
 import json
 from lxml import etree
 import logging
 log = logging.getLogger(__name__)
 
 
-from .tokens import Token
-from .node import Node
-from .group import Group
-from .content import Text, Number
-
-from collections import namedtuple, OrderedDict
-
-# Argument definition 
+# Argument definition
 Parameter = namedtuple('Parameter', 'type name')
 
 # Optional argument
+
+
 class OptArg(Node):
     '''
     Latex optional argument.
@@ -62,6 +62,7 @@ class OptArg(Node):
     It could probably be subclassed from NodeList instead of Node.
     TODO: read verbatim then split into args and kwargs (see misc.py)
     '''
+
     def __init__(self):
         Node.__init__(self)
 
@@ -91,19 +92,19 @@ class ArgTable(OrderedDict):
     TODO: basic type checking
         - allowed types are Group, Command, OptArg, Text
     '''
-    counter = 0 # for debugging
+    counter = 0  # for debugging
 
     def __init__(self, keys=None):
         self.number = ArgTable.counter
         ArgTable.counter += 1
         OrderedDict.__init__(self)
-        if keys: # list of argument names
+        if keys:  # list of argument names
             for key in keys:
-                OrderedDict.__setitem__(self, key, None)    
+                OrderedDict.__setitem__(self, key, None)
 
     def insert(self, arg):
         # if not isinstance(arg, Node):
-            # Exception('ArgTable can only contain Node objects')
+        # Exception('ArgTable can only contain Node objects')
         self[arg.species] = arg
 
     def chars(self, **kwargs):
@@ -117,13 +118,12 @@ class ArgTable(OrderedDict):
                 s.append(arg.chars())
         return ''.join(s)
 
-
     def pretty_print(self, depth=0, indent_str='----'):
         ''' print opt args only when set '''
         s = []
         for name, arg in self.items():
             if arg:
-                s.append(indent_str*(depth) + 'arg:' + name) # arg name
+                s.append(indent_str*(depth) + 'arg:' + name)  # arg name
                 s.append(arg.pretty_print(depth=depth+1))
         return '\n'.join(s)
 
@@ -162,38 +162,39 @@ def parse_definition(s):
     else:
         while atoms and (atoms[-1].isalpha() or atoms[-1] == '*'):
             cmd_name += atoms.pop()
-    
+
     # scan for arguments
     while atoms:
 
         # scan for bracket type
         if atoms and atoms[-1] == '{':
-            param_type = 'm' # mandatory
+            param_type = 'm'  # mandatory
         elif atoms and atoms[-1] == '[':
-            param_type = 'o' # optional
+            param_type = 'o'  # optional
         else:
-            return None 
-        
-        # pop left bracket    
+            return None
+
+        # pop left bracket
         atoms.pop()
-        
+
         # read arg name
         param_name = ''
-        while atoms and not atoms[-1] in ['}',']']:
+        while atoms and not atoms[-1] in ['}', ']']:
             param_name += atoms.pop()
-        
+
         # pop closing bracket
-        if atoms and ((param_type=='m' and not atoms[-1]=='}') or (param_type=='o' and not atoms[-1]==']')):
+        if atoms and ((param_type == 'm' and not atoms[-1] == '}') or (param_type == 'o' and not atoms[-1] == ']')):
             return None
-        atoms.pop() 
+        atoms.pop()
 
         # check for starred (specified as 'chapter[*]
         if param_name == '*':
-            params.append(Parameter(type='s', name='starred'))        
+            params.append(Parameter(type='s', name='starred'))
         else:
-            params.append(Parameter(type=param_type, name=param_name)) 
+            params.append(Parameter(type=param_type, name=param_name))
 
     return cmd_name, params
+
 
 def main():
     test_strings = [
@@ -205,6 +206,7 @@ def main():
     for s in test_strings:
         name, params = parse_definition(s)
         print('{:20}{}'.format(name, params))
+
 
 if __name__ == '__main__':
     main()

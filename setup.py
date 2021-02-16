@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='latextree',
-    version='1.1.3',
+    version='0.1.3',
     description='Document object model for Latex',
     long_description=long_description,
     long_description_content_type="text/markdown",

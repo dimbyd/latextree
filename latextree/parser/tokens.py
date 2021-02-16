@@ -44,7 +44,8 @@ class Token():
 
 class EndToken(Token):
     '''
-    EndToken class. End marker for TokenStream objects. Not currently used by parser (useful for debugging).
+    EndToken class. End marker for TokenStream objects. 
+    Not currently used by parser (useful for debugging).
     '''
     def __init__(self):
         Token.__init__(self, 15, '')

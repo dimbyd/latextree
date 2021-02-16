@@ -3,27 +3,27 @@ import latextree.settings as settings
 from latextree.parser import Parser
 from latextree.tree import LatexTree
 
+
 def prove_tree_A():
-    
+
     # init tree
     tree = LatexTree()
 
     # read defs
     defs_file = 'examdef.json'
     defs_file = os.path.join(settings.EXTENSIONS_ROOT, defs_file)
-    tree.read_defs(defs_file)
+    tree.read_defs_file(defs_file)
 
     # parse file
     tex_file = 'test_article/main.tex'
     tex_file = os.path.join(settings.LATEX_ROOT, tex_file)
     tree.parse_file(tex_file)
-    
+
     print('------------------------------')
     print(tree.write_pretty())
     print('------------------------------')
     print(tree.write_xml())
     print('------------------------------')
-
 
     # test post-processing
     tree.process_tree()
@@ -32,13 +32,13 @@ def prove_tree_A():
     print(tree.labels)
 
     # test find-by-type
-    for node in tree.root.get_phenotypes(species='Mathmode'): # list
+    for node in tree.root.get_phenotypes(species='Mathmode'):  # list
         print(node.chars())
 
     # test xml-to-file
     xout = tree.write_xml()
     with open('xtree.xml', 'w') as f:
-            f.write(xout)
+        f.write(xout)
 
     # # test bbq
     # bbq = tree.write_bbq(include_mathjax_header=False)
@@ -50,14 +50,15 @@ def prove_tree_A():
 def prove_tree_B():
 
     # set filename
-    # tex_main = 'test_quiz/main.tex' 
-    tex_main = 'test_small/main.tex' 
+    # tex_main = 'test_quiz/main.tex'
+    # tex_main = 'test_small/main.tex'
+    tex_main = 'test_misc/main.tex'
     tex_main = os.path.join(settings.LATEX_ROOT, tex_main)
-    
+
     # build tree
     tree = LatexTree()
     tree.parse_file(tex_main)
-    tree.process_tree()
+    tree.pp_tree()
 
     print('------------------------------')
     print(tree.root.pretty_print())
@@ -78,19 +79,17 @@ def prove_tree_B():
             print(colored('False', 'red'))
         print('------------------------------')
 
-
     # labels test
-    labels = tree.get_labels()
-    for key, val in labels.items():
+    for key, val in tree.labels.items():
         print('{:20} {}'.format(key, val.chars()))
     print('------------------------------')
 
     # numeric paths test
-    paths = tree.get_numeric_paths()
-    for key, val in paths.items():
-        path = '.'.join([str(num) for num in val])
-        print('{}\t{}'.format(key, path))
-    print('------------------------------')
+    # paths = tree.get_numeric_paths()
+    # for key, val in paths.items():
+    #     path = '.'.join([str(num) for num in val])
+    #     print('{}\t{}'.format(key, path))
+    # print('------------------------------')
 
     # # traversal test
     # print('Numbered phenotypes:')
@@ -110,5 +109,5 @@ def prove_tree_B():
 
 
 if __name__ == '__main__':
-#    prove_tree_A()
+    #    prove_tree_A()
     prove_tree_B()

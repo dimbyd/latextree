@@ -1,15 +1,6 @@
 # names.py
 r'''
-Taken from the (built-in) babel files.
-Perhaps we can do something like:
-    \newtheorem{exc}{\en Exercise \cy Ymarfer}
-Test it!!
-
-e.g. for new floats:
-\floatname{video}{Video}
-then
-\renewcommand{\floatname}{Fideo}
-
+Language support: set element names.
 '''
 from collections import namedtuple
 
@@ -23,7 +14,7 @@ tex_names = {
     'chaptername':      TexName(en='Chapter', cy='Pennod'),
     'sectionname':      TexName(en='Section', cy='Adran'),
     'subsectionname':   TexName(en='Subection', cy='Isdran'),
-    'subsubsectionname':TexName(en='Subsubection', cy='Isisadran'),
+    'subsubsectionname': TexName(en='Subsubection', cy='Isisadran'),
     'paragraphname':    TexName(en='Paragraph', cy='Paragraff'),
     'subparagraphname': TexName(en='Subparagraph', cy='Isbaragraff'),
     'appendixname':     TexName(en='Appendix', cy='Atodiad'),
@@ -33,6 +24,7 @@ tex_names = {
     'indexname':        TexName(en='Index', cy='Mynegai'),
     'figurename':       TexName(en='Figure', cy='Darlun'),
     'tablename':        TexName(en='Table', cy='Tabl'),
+    'videoname':        TexName(en='Video', cy='Fideo'),
     'partname':         TexName(en='Part', cy='Rhan'),
     'enclname':         TexName(en='encl', cy='amgae\"edig'),
     'ccname':           TexName(en='cc', cy='cop\\"\\i au'),
@@ -44,9 +36,11 @@ tex_names = {
     'glossaryname':     TexName(en='Glossary', cy='Rhestr termau'),
 }
 
+
 def main():
     for tex_name in tex_names.values():
         print('{:20s} {:10s}'.format(tex_name.en, tex_name.cy))
+
 
 if __name__ == '__main__':
     main()
