@@ -20,7 +20,7 @@ class Node():
         - Additional attributes are defined in derived classes:
     '''
 
-    counter = 0  # for serial numbers
+    counter = 0  # serial numbers
 
     def __init__(self):
         self.serial_number = Node.counter
@@ -29,14 +29,14 @@ class Node():
         self.children = []
 
         # Taxonomy info
-        # The last one fails for direct subclasses of Node!
         # e.g.  species = itemize,  genus = List, family = Environment
-        self.species = type(self).__name__                    
-        self.genus = type(self).__bases__[0].__name__         
+        # The last one currently fails for direct subclasses of `Node`
+        self.species = type(self).__name__
+        self.genus = type(self).__bases__[0].__name__
         self.family = type(self).__bases__[0].__bases__[0].__name__
 
         # info
-        log.info('Node {} created ({})'.format(
+        log.debug('Node {} created ({})'.format(
             self.serial_number, self.species))
 
     def __repr__(self):
@@ -112,12 +112,12 @@ class Node():
     # --------------------
     def get_mpath(self):
         '''
-        Not used.
+        Deprecated.
         Unique ID. Compute materialized path of the node in the tree.
         Based on index of node among its siblings (in its parent's list of children)
         This index is converted to its two-digit hex equivalent (max. 256 children)
         The mpath is created by recursive calls to parent nodes until the root is reached.
-        We return a dot-separated path of two-digit hex numbers.
+        The function returns a dot-separated path of two-digit hex numbers.
         This provides direct addressing which might be handy for hyperlinks between documents
         e.g we append the mpath to a document identifier
         '''

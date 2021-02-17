@@ -1,6 +1,7 @@
 # coredefs.py
 r'''
-This file contains the dictionary `defs' which has the following keys:
+This file contains the core dictionary of definitions `defs'
+which has the following keys:
 
 Families:
 1. `commands'           argument definitions for commands
@@ -19,31 +20,34 @@ Counter definitions:
 The Family classes are divided into Genera, and each species is allocated to 
 a specific Genus class. The Genus names are mostly arbitrary and are passed through to templates. 
 The Genus names are capitalized which helps to distingish them from species names, 
-which are taken from the corresponding latex command name and so are mostly lower case.
+which are taken directly from the corresponding latex command name and hence mostly lower case.
 
 TODO: some species/genus/argument/character names are hard-wired in the parser
     Custom: def, newcommand, newenvironment, ...
     Number: arabic, alph, roman, ...
     Verbatim: verbatim
-We need to prevent these from being overwrriten by a custom definitions file.
+We might need to prevent these from being overwrriten by a custom definitions file.
 
 Declarations
     "Declarations produce neither text nor space but either 
-    affect the way LATEX prints the following text or provide 
-    information for later use. Font size changes are an example 
+    (1) affect the way LATEX prints the subsequent text or (2) records 
+    information for later use, either globaly or within scope.
+    Font size changes are an example 
     of declarations. \large will cause any text that follows to 
-    appear in a larger type size. Declarations are often used 
-    within a group to limit their scope."
-    Note: for every declaration Latex always provides an environment 
-    of the same name eg
-      \begin{bf}hello\end{bf} 
-    works so do we need to specify these in the env definitions too?
+    appear in a larger type size. Declarations are often put inside
+    a group to limit their scope, e.g. {\bf Proof}
     
-    1. For mode declarations eg \bf, the parser creates the corresponding
-      Declaration.FontStyle:bf 
-    node then process tokens until the next mode declaration of
-    genus 'FontStyle' or another stop tokenis encountered, eg
+    Interestingly, every declaration has an equivalent environment 
+    of the same name e.g.
+      \begin{bf}hello\end{bf} 
+    works. Do we need to specify these in the environment definitions too?
+    
+    1. For mode declarations eg \bf, the parser creates a corresponding
+      `Declaration.FontStyle:bf` 
+    object then process tokens until (a) the next `FontStyle` mode 
+    declaration or (b) a different stop token is encountered, e.g.
        (0,'sc'), (2, '}') or (0,'end')
+    
     Tex-style environments work in the same way, they just define blocks ...
 
     2. TODO: directive declarations change the global parameters
@@ -53,6 +57,7 @@ Declarations
             - record for write functions (in registry.lengths say)
 '''
 
+# LaTeX character table (ASCII names)
 r'''
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -71,7 +76,7 @@ r'''
 %   Right brace   \}     Tilde         \~}
 '''
 
-# Active characters 
+# Active characters
 # subclassed from ControlSequence (because they can have arguments e.g. "o in babel german)
 # _ and ^ are also active characters (?)
 # active_chars = ['~']
@@ -79,8 +84,8 @@ r'''
 # Control character names based on the \CharacterTable
 # Classes corresponsing to control characters are named,
 # the character itself is stored as an attribute (symbol).
-# This is to avoid class names such as '[' or '!' because
-# xml does not accept such element names.
+# This is to avoid class names such as '[' or '!'. Python
+# is fine with these, but XML is not!
 character_names = {
     '!': 'Exclamation',
     '$': 'Dollar',
@@ -175,8 +180,8 @@ defs = {
             'mpfootnote{text}',
         ],
         'Horizontal': [
-            ' ',    # space             \<space> 
-            ',',    # half-space        \, 
+            ' ',    # space             \<space>
+            ',',    # half-space        \,
             '!',    # half-space back   \!
             'quad',
             'qquad',
@@ -209,7 +214,7 @@ defs = {
             ']',    # end displaymath ($$)
             '(',    # begin mathmode ($)
             ')',    # end mathmode ($)
-        ],        
+        ],
         'Misc': [
             'addtocontents{file}{text}',
             'addcontentsline{file}{sec_unit}{entry}',
@@ -245,11 +250,11 @@ defs = {
             '{',    # left brace
             '}',    # right brace
             '_',    # underscore
-        ],    
+        ],
         'Symbol': [
             'i',            # dotless i
             'j',            # dotless j
-            'l',            # barred l 
+            'l',            # barred l
             'o',            # slashed o
             'dag',          # dagger
             'ddag',         # double dagger
@@ -262,8 +267,8 @@ defs = {
             '\\[*][length]',   # line break for tabular
         ],
         'Vertical': [
-            'par', 
-            'smallskip', 
+            'par',
+            'smallskip',
             'bigskip',
             'vspace[*]{length}',
         ],
@@ -277,10 +282,8 @@ defs = {
             'pageref{key}',
             'eqref{key}',
         ],
-        'Camnotes': [   # move to camnotes.json
+        'Binotes': [      # move to binotes.json
             'includevideo[*][options]{url}',
-        ],
-        'Cambi': [      # move to cambi.json
             'bi', 'cy', 'en', 'fr', 'de',
             'eng{text}',
             'cym{text}',
@@ -291,14 +294,16 @@ defs = {
             'graphicspath{paths}',
             'DeclareGraphicsExtensions{ext_list}',
         ],
-        'Hyperref': [   # move to hyperref.json (and have separate genera 'xref' for internal and 'href' for external)
+        # We need an 'xref' genus for internal references/hyperlinks,
+        # and a separate 'href' genus for external references/hyperlinks.
+        'Hyperref': [   # move to hyperref.json
             'autoref{key}',
             'nameref{key}',
             'hyperref[key]{text}',
             'url{url}',
             'href{url}{text}',
         ],
-        'Lipsum': [     # move to lipsumdef.json       
+        'Lipsum': [     # move to lipsumdef.json
             'lipsum[num]',
         ],
     },
@@ -306,7 +311,7 @@ defs = {
     # ------------------------------
     # environments
     'environments': {
-        
+
         'Document': [
             'document',
         ],
@@ -350,10 +355,10 @@ defs = {
         ],
         'Box': [
             'abstract[options]',
-            'quote[options]',       
+            'quote[options]',
             'minipage{width}[options]',
         ],
-        'Cambi': [ # move to cambidef.json
+        'Binotes': [  # move to binotes.json
             'english',
             'cymraeg',
             'welsh',
@@ -381,7 +386,7 @@ defs = {
         ],
         'Alignment': [
             'centering',    # eqiv. to center env
-            'raggedleft', # eqiv. to flushright env 
+            'raggedleft',  # eqiv. to flushright env
             'raggedright',  # eqiv. to flushleft env
         ],
         'FontStyle': [
@@ -392,7 +397,7 @@ defs = {
             'sl', 'slshape',
             'sc', 'scshape',
             'tt', 'ttshape',
-            'em', 
+            'em',
             'normalfont',
         ],
         'FontSize': [
@@ -408,16 +413,17 @@ defs = {
             'Huge',
         ],
         'Language': [   # move to cambi.json
-            'bi', 
-            'cy', 
-            'en', 
-            'fr', 
+            'bi',
+            'cy',
+            'en',
+            'fr',
             'de',
-        ], 
+        ],
     },
 
     # ------------------------------
     # block_declarations (stop tokens are all cmds of the same genus)
+    # i.e. {\bf hello \sl world} or {\en Goodbye \cy Hwyl fawrs}
     'block_declarations': [
         'Alignment',
         'FontStyle',
@@ -426,7 +432,7 @@ defs = {
     ],
 
     # ------------------------------
-    # stop tokens for block commands 
+    # stop tokens for block commands
     'block_commands': {
         "chapter":          ["document"],
         "section":          ["chapter", "document"],
@@ -495,20 +501,20 @@ defs = {
         'subsubsection':     '\\thesubsection.\\arabic{subsubsection}',
         'paragraph':         '\\thesubsubsection.\\arabic{paragraph}',
         'subparagraph':      '\\theparagraph.\\arabic{subparagraph}',
-        'equation':          '\\thesection.\\arabic{equation}',    
-        'figure':            '\\arabic{figure}',    
-        'subfigure':         '\\alph{subfigure}',    
-        'table':             '\\arabic{table}',    
+        'equation':          '\\thesection.\\arabic{equation}',
+        'figure':            '\\arabic{figure}',
+        'subfigure':         '\\alph{subfigure}',
+        'table':             '\\arabic{table}',
         'subtable':          '\\alph{subtable}',
         'page':              '\\arabic{page}',
         'footnote':          '\\arabic{footnote}',
         'mpfootnote':        '\\alph{footnote}',
         'enumi':             '\\arabic{enumi}.',
-        'enumii':            '(\\alph{enumii})', 
+        'enumii':            '(\\alph{enumii})',
         'enumiii':           '\\roman{enumiii}.',
         'enumiv':            '\\Alph{enumiv}.',
-    },    
-# names (as found in babel files)
+    },
+    # names (as found in babel files)
     'names': {
         'videoname': {
             'en':   'Video',
@@ -518,103 +524,103 @@ defs = {
             'en':   'Preface',
             'cy':   'Rhagair',
         },
-        'refname': {          
+        'refname': {
             'en':   'References',
             'cy':   'Cyfeiriadau',
         },
-        'abstractname': {    
+        'abstractname': {
             'en':   'Abstract',
             'cy':   'Crynodeb',
         },
-        'bibname': {         
+        'bibname': {
             'en':   'Bibliography',
             'cy':   'Llyfryddiaeth',
         },
-        'chaptername': {     
+        'chaptername': {
             'en':   'Chapter',
             'cy':   'Pennod',
         },
-        'sectionname': {     
+        'sectionname': {
             'en':   'Section',
             'cy':   'Adran',
         },
-        'subsectionname': {  
+        'subsectionname': {
             'en':   'Subection',
             'cy':   'Isdran',
         },
         'subsubsectionname': {
-            'en':   'Subsubection', 
+            'en':   'Subsubection',
             'cy':   'Isisadran',
         },
-        'paragraphname': {   
+        'paragraphname': {
             'en':   'Paragraph',
             'cy':   'Paragraff',
         },
         'subparagraphname': {
-            'en':   'Subparagraph', 
+            'en':   'Subparagraph',
             'cy':   'Isbaragraff',
         },
-        'appendixname': {    
+        'appendixname': {
             'en':   'Appendix',
             'cy':   'Atodiad',
         },
-        'contentsname': {    
+        'contentsname': {
             'en':   'Contents',
             'cy':   'Cynnwys',
         },
-        'listfigurename': {  
+        'listfigurename': {
             'en':   'List of Figures',
             'cy':   'Rhestr Ddarluniau',
         },
-        'listtablename': {   
+        'listtablename': {
             'en':   'List of Tables',
             'cy':   'Rhestr Dablau',
         },
-        'indexname': {       
+        'indexname': {
             'en':   'Index',
             'cy':   'Mynegai',
         },
-        'figurename': {      
+        'figurename': {
             'en':   'Figure',
             'cy':   'Darlun',
         },
-        'tablename': {       
+        'tablename': {
             'en':   'Table',
             'cy':   'Tabl',
         },
-        'partname': {        
+        'partname': {
             'en':   'Part',
             'cy':   'Rhan',
         },
-        'enclname': {        
+        'enclname': {
             'en':   'encl',
             'cy':   'amgae\"edig',
         },
-        'ccname': {          
+        'ccname': {
             'en':   'cc',
             'cy':   'cop\\"\\i au',
         },
-        'headtoname': {      
+        'headtoname': {
             'en':   'To',
             'cy':   'At',
         },
-        'pagename': {        
+        'pagename': {
             'en':   'page',
             'cy':   'tudalen',
         },
-        'seename': {         
+        'seename': {
             'en':   'see',
             'cy':   'gweler',
         },
-        'alsoname': {        
+        'alsoname': {
             'en':   'see also',
             'cy':   'gweler hefyd',
         },
-        'proofname': {       
+        'proofname': {
             'en':   'Proof',
             'cy':   'Prawf',
         },
-        'glossaryname': {    
+        'glossaryname': {
             'en':   'Glossary',
             'cy':   'Rhestr termau',
         },
@@ -622,18 +628,17 @@ defs = {
 }
 
 
-
 # ==============================
 # mathmode (not currently used)
-# If we rely on MathJax to render mathmode elements, then provided the reconstruction 
-# via chars() is faithful we can recover the source and place this in the output file,
-# which means we can avoid defining mathmode commands explicitly.
-# One day we might want output in MathML format or similar ...
+# If we rely on MathJax to render mathmode elements, then provided that the reconstruction
+# via chars() is faithful we can recover the source and place this in the output file.
+# This means we can avoid defining mathmode commands explicitly, but one day we might want
+# output in MathML or ASCIIMath etc
 #
-# ... so here are some anyway!
+# Here are some anyway!
 # ==============================
 mathmode_defs = {
-    
+
     'commands': {
         'accents': [
             'hat{char}',
@@ -671,7 +676,7 @@ mathmode_defs = {
             'tag{key}',
         ],
     },
-    
+
     'environments': {
         'tabular': [
             'array[pos]{cols}',
@@ -681,46 +686,46 @@ mathmode_defs = {
 
     'symbols':  {
         'greek': [
-            'alpha',   
-            'beta',   
-            'gamma',   
-            'delta',   
-            'epsilon',   
-            'varepsilon', 
-            'zeta',   
-            'eta',   
-            'theta',   
-            'vartheta', 
-            'iota',   
-            'kappa',   
-            'lambda',   
-            'mu',   
-            'nu',   
-            'xi',   
-            'pi',   
-            'varpi', 
-            'rho',   
-            'varrho', 
-            'sigma',   
-            'varsigma', 
-            'tau',   
-            'upsilon',   
-            'phi',   
-            'varphi', 
-            'chi',   
-            'psi',   
-            'omega',   
-            'Gamma', 
-            'Delta',   
-            'Theta',   
-            'Lambda',   
-            'Xi',   
-            'Pi',   
-            'Sigma',   
-            'Upsilon',   
-            'Phi',   
-            'Psi',   
-            'Omega',   
+            'alpha',
+            'beta',
+            'gamma',
+            'delta',
+            'epsilon',
+            'varepsilon',
+            'zeta',
+            'eta',
+            'theta',
+            'vartheta',
+            'iota',
+            'kappa',
+            'lambda',
+            'mu',
+            'nu',
+            'xi',
+            'pi',
+            'varpi',
+            'rho',
+            'varrho',
+            'sigma',
+            'varsigma',
+            'tau',
+            'upsilon',
+            'phi',
+            'varphi',
+            'chi',
+            'psi',
+            'omega',
+            'Gamma',
+            'Delta',
+            'Theta',
+            'Lambda',
+            'Xi',
+            'Pi',
+            'Sigma',
+            'Upsilon',
+            'Phi',
+            'Psi',
+            'Omega',
         ],
         'other': [
             'aleph',

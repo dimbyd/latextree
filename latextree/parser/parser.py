@@ -146,7 +146,7 @@ class Parser():
     Latex parser class. Converts Latex source into a tree of Node objects
     The main `parse` function returns a Node object of type Root
     The `Parser` class only deals with string input. 
-    The `LatexTree` class handles file i/o.
+        - the `LatexTree` class handles file i/o.
     '''
 
     def __init__(self):

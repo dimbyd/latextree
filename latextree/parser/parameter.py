@@ -22,7 +22,7 @@ The last three come by the TeX rule that "if the first non-space is not a left b
 a left bracket, the next token is the argument". Thus if we expect a mandatory argument 
 and/or the possibility of an optional argument and the next (non-space) token is neither, 
 we just take the next token as the argument, convert to a LatexTree node of some kind, 
-then assign this to the ArgTable agains the argument name (defined in coredefs.py)
+then assign this to the ArgTable against the argument name (defined in coredefs.py)
 
 This module defines the following:
 1. Parameter    - named tuple with argument type (s|o|m) and argument name 
